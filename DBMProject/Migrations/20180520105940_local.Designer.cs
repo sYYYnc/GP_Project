@@ -11,7 +11,7 @@ using System;
 namespace DBMProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180517214103_local")]
+    [Migration("20180520105940_local")]
     partial class local
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

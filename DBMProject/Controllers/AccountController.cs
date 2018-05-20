@@ -232,7 +232,11 @@ namespace DBMProject.Controllers
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation("User created a new account with password.");
-                    return RedirectToLocal(returnUrl);
+                    //return RedirectToLocal(returnUrl);
+                    ViewBag.Message = " Registo efetuado com sucesso. Foi enviado para " + model.Email +
+                                          " um email de confirmação.";
+                    ViewBag.Status = true;
+                    return View(model);
                 }
                 AddErrors(result);
             }
