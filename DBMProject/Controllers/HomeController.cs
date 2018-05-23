@@ -15,14 +15,14 @@ namespace DBMProject.Controllers
             return View();
         }
 
-        public IActionResult About()
+        public IActionResult ListarProjetos()
         {
             ViewData["Message"] = "Your application description page.";
 
             return View();
         }
 
-        public IActionResult Contact()
+        public IActionResult AdicionarProjetos()
         {
             ViewData["Message"] = "Your contact page.";
 
