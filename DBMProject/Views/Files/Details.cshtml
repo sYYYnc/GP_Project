@@ -1,0 +1,42 @@
+﻿@model DBMProject.Models.FilesManagement.File
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>File</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FileName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Technology)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Technology)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FileId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

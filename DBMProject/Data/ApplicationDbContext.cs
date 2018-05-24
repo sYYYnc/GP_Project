@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DBMProject.Models;
+using DBMProject.Models.FilesManagement;
 
 namespace DBMProject.Data
 {
@@ -22,5 +23,7 @@ namespace DBMProject.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<DBMProject.Models.FilesManagement.File> File { get; set; }
     }
 }

@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DBMProject.Models.FilesManagement.File>
+
+@{
+    ViewData["Title"] = "Lista de projetos";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p>
+    <a asp-action="Create">Upload ficheiro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FileName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Technology)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Size)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Technology)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.FileId">Details</a>
+            </td>
+            <td>
+                <a asp-action="DownloadFile">Download</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

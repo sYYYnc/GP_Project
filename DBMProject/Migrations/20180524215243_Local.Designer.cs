@@ -11,8 +11,8 @@ using System;
 namespace DBMProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180517214103_local")]
-    partial class local
+    [Migration("20180524215243_Local")]
+    partial class Local
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,6 +74,26 @@ namespace DBMProject.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("DBMProject.Models.FilesManagement.File", b =>
+                {
+                    b.Property<int>("FileId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("FileName")
+                        .IsRequired();
+
+                    b.Property<double>("Size");
+
+                    b.Property<string>("Technology")
+                        .IsRequired();
+
+                    b.HasKey("FileId");
+
+                    b.ToTable("File");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

@@ -75,6 +75,26 @@ namespace DBMProject.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("DBMProject.Models.FilesManagement.File", b =>
+                {
+                    b.Property<int>("FileId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("FileName")
+                        .IsRequired();
+
+                    b.Property<double>("Size");
+
+                    b.Property<string>("Technology")
+                        .IsRequired();
+
+                    b.HasKey("FileId");
+
+                    b.ToTable("File");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")

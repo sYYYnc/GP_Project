@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DBMProject.Migrations
 {
-    public partial class local : Migration
+    public partial class Local : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,6 +48,22 @@ namespace DBMProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "File",
+                columns: table => new
+                {
+                    FileId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true),
+                    FileName = table.Column<string>(nullable: false),
+                    Size = table.Column<double>(nullable: false),
+                    Technology = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_File", x => x.FileId);
                 });
 
             migrationBuilder.CreateTable(
@@ -212,6 +228,9 @@ namespace DBMProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "File");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
