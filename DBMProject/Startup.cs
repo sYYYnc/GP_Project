@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using DBMProject.Data;
+﻿using DBMProject.Data;
 using DBMProject.Models;
 using DBMProject.Services;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace DBMProject
 {
@@ -27,12 +24,12 @@ namespace DBMProject
         public void ConfigureServices(IServiceCollection services)
         {
             //Criação de branch para login/registo
-            
 
+            var connectionString = @"Server = tcp:dbmproject20180525110553dbserver.database.windows.net,1433; Initial Catalog = M7projeto_db; Persist Security Info = False; User ID =Projetom7; Password =M7projeto_2018; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                options.UseSqlServer(connectionString));
 
-           
+
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
@@ -46,7 +43,7 @@ namespace DBMProject
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
 
-            
+
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -80,9 +77,9 @@ namespace DBMProject
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            
+
         }
 
-        
+
     }
 }
