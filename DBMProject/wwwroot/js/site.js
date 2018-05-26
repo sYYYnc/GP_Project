@@ -19,7 +19,6 @@ function uploadfile() {
         processData: false,
         contentType: false,
         success: function (result) {
-            console.log(formData);
             alert("Projeto enviado com sucesso!");
         },
         error: function (jqXHR) {

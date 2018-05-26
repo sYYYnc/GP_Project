@@ -113,9 +113,9 @@ namespace DBMProject.Controllers
                 else
                     fileName = "Projeto" + (_context.Projeto.Max(p => p.ProjetoId) + 1) + extensions;
 
-                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create))
+                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create, FileAccess.ReadWrite))
                 {
-                    file.CopyToAsync(fileStream);
+                    file.CopyTo(fileStream);
                 }
             }
 
@@ -124,7 +124,7 @@ namespace DBMProject.Controllers
 
         public ActionResult DownloadProject(string searchName, string fileName)
         {
-            return File("~/UploadedProjects/" + searchName, "application/zip", fileName);
+            return File("~/UploadedProjects/" + searchName, "application/x-zip-compressed", fileName + ".rar");
         }
         
     }
