@@ -11,7 +11,7 @@ using System;
 namespace DBMProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180524215243_Local")]
+    [Migration("20180525213302_Local")]
     partial class Local
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,14 +76,18 @@ namespace DBMProject.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("DBMProject.Models.FilesManagement.File", b =>
+            modelBuilder.Entity("DBMProject.Models.ProjectsManagement.Projeto", b =>
                 {
-                    b.Property<int>("FileId")
+                    b.Property<int>("ProjetoId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<string>("FileName")
+                    b.Property<string>("ProjectFileName")
+                        .IsRequired();
+
+                    b.Property<string>("ProjectName")
                         .IsRequired();
 
                     b.Property<double>("Size");
@@ -91,9 +95,9 @@ namespace DBMProject.Migrations
                     b.Property<string>("Technology")
                         .IsRequired();
 
-                    b.HasKey("FileId");
+                    b.HasKey("ProjetoId");
 
-                    b.ToTable("File");
+                    b.ToTable("Projeto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

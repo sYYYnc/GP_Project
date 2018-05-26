@@ -51,19 +51,20 @@ namespace DBMProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "File",
+                name: "Projeto",
                 columns: table => new
                 {
-                    FileId = table.Column<int>(nullable: false)
+                    ProjetoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(nullable: true),
-                    FileName = table.Column<string>(nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    ProjectFileName = table.Column<string>(nullable: false),
+                    ProjectName = table.Column<string>(nullable: false),
                     Size = table.Column<double>(nullable: false),
                     Technology = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_File", x => x.FileId);
+                    table.PrimaryKey("PK_Projeto", x => x.ProjetoId);
                 });
 
             migrationBuilder.CreateTable(
@@ -230,7 +231,7 @@ namespace DBMProject.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "File");
+                name: "Projeto");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -5,18 +5,18 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace DBMProject.Models.FilesManagement
+namespace DBMProject.Models.ProjectsManagement
 {
-    public class File
+    public class Projeto
     {
-        public int FileId { get; set; }
+        public int ProjetoId { get; set; }
 
         [DisplayName("Nome do projeto")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Introduza o nome do projeto")]
-        public string FileName { get; set; }
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Nome do projeto em falta")]
+        public string ProjectName { get; set; }
 
         [DisplayName("Tecnologia")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Introduza a tecnologia utilizada")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Tecnologia do projeto em falta")]
         public string Technology { get; set; }
 
         [DisplayName("Tamanho")]
@@ -26,5 +26,8 @@ namespace DBMProject.Models.FilesManagement
         [Required(AllowEmptyStrings = false, ErrorMessage = "Associe uma descrição do projeto para melhor percepção")]
         public string Description { get; set; }
 
+        //[Required(AllowEmptyStrings = false, ErrorMessage = "Anexo do projeto em falta")]
+
+        public string ProjectFileName { get; set; }
     }
 }

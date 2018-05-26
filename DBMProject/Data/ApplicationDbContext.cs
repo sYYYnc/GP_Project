@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using DBMProject.Models;
-using DBMProject.Models.FilesManagement;
+using DBMProject.Models.ProjectsManagement;
 
 namespace DBMProject.Data
 {
@@ -24,6 +24,6 @@ namespace DBMProject.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<DBMProject.Models.FilesManagement.File> File { get; set; }
+        public DbSet<DBMProject.Models.ProjectsManagement.Projeto> Projeto { get; set; }
     }
 }
