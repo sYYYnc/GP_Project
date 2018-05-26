@@ -1,0 +1,46 @@
+﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
+
+@{
+    ViewData["Title"] = "Lista de projetos";
+}
+
+<h2>@ViewData["Title"]</h2>
+<p>
+    <a asp-action="Create">Upload ficheiro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Technology)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Size)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Technology)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Size)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ProjetoId">Details</a>
+                    @Html.ActionLink("Download", "DownloadProject", new { searchName = item.ProjectFileName, fileName = item.ProjectName })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

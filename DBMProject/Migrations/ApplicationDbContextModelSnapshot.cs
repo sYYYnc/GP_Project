@@ -75,6 +75,30 @@ namespace DBMProject.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("DBMProject.Models.ProjectsManagement.Projeto", b =>
+                {
+                    b.Property<int>("ProjetoId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<string>("ProjectFileName")
+                        .IsRequired();
+
+                    b.Property<string>("ProjectName")
+                        .IsRequired();
+
+                    b.Property<double>("Size");
+
+                    b.Property<string>("Technology")
+                        .IsRequired();
+
+                    b.HasKey("ProjetoId");
+
+                    b.ToTable("Projeto");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
