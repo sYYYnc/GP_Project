@@ -1,0 +1,47 @@
+﻿@model DBMProject.Models.ProjectsManagement.Projeto
+
+@{
+    ViewData["Title"] = "Enviar Projeto";
+}
+
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+<script type="text/javascript" src="~/js/site.js"></script>
+
+<h2>@ViewData["Title"]</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        
+        <form asp-action="Create" onsubmit="uploadfile();">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProjectName" class="control-label"></label>
+                <input asp-for="ProjectName" class="form-control" />
+                <span asp-validation-for="ProjectName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Technology" class="control-label"></label>
+                <input asp-for="Technology" class="form-control" />
+                <span asp-validation-for="Technology" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" cols="50" rows="10"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <hr />
+            <h3>Anexe o seu projeto...</h3>
+            <div class="form-group">
+                <input id="projectFile" asp-for="ProjectFileName" name="projectFileName" class="form-control" type="file" required />
+                <p style="color: darkred">@ViewData["ExtensionError"]</p>
+            </div>
+            <br />
+
+            <button type="submit" id="btnUpload" class="btn btn-default">Concluir</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

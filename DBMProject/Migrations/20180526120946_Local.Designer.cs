@@ -11,8 +11,8 @@ using System;
 namespace DBMProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180520105940_local")]
-    partial class local
+    [Migration("20180526120946_Local")]
+    partial class Local
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -74,6 +74,29 @@ namespace DBMProject.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("DBMProject.Models.ProjectsManagement.Projeto", b =>
+                {
+                    b.Property<int>("ProjetoId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
+
+                    b.Property<string>("ProjectFileName");
+
+                    b.Property<string>("ProjectName")
+                        .IsRequired();
+
+                    b.Property<double>("Size");
+
+                    b.Property<string>("Technology")
+                        .IsRequired();
+
+                    b.HasKey("ProjetoId");
+
+                    b.ToTable("Projeto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
