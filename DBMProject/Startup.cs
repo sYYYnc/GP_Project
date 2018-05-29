@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Threading.Tasks;
 
 namespace DBMProject
 {
@@ -27,9 +28,7 @@ namespace DBMProject
 
             var connectionString = @"Server = tcp:dbmproject20180525110553dbserver.database.windows.net,1433; Initial Catalog = GPprojeto_db; Persist Security Info = False; User ID = Projetom7; Password =M7projeto_2018; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-
-
+                options.UseSqlServer(connectionString)); 
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
@@ -76,6 +75,42 @@ namespace DBMProject
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            CreateUserRoles(serviceProvider).Wait();
+
+        }
+
+        private async Task CreateUserRoles(IServiceProvider serviceProvider)
+        {
+            var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+            var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+
+
+            IdentityResult roleResult;
+            //Adding Addmin Role  
+            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
+            if (!roleCheck)
+            {
+                //create the roles and seed them to the database  
+                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+            }
+            //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
+            ApplicationUser user = await UserManager.FindByEmailAsync("portfolio.admin@mail.com");
+            var User = new ApplicationUser()
+            {
+                UserName = "Admin",
+                Email = "portfolio.admin@mail.com"
+            };
+
+            if (user == null)
+            {
+                var createPowerUser = await UserManager.CreateAsync(User, "admin123");
+                if (createPowerUser.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(User, "Admin");
+                }
+            }
+
 
 
         }
