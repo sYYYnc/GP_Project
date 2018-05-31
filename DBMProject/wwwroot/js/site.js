@@ -1,6 +1,6 @@
 ﻿// Write your JavaScript code.
 
-function uploadfile() {
+/*function uploadfile() {
     var myFile = document.getElementById("projectFile");
     var formData = new FormData();
     var _url = "/Projetos/UploadProject";
@@ -29,3 +29,4 @@ function uploadfile() {
         }
     });
 }
+*/

@@ -59,24 +59,36 @@ namespace DBMProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description")] Projeto projeto, string projectFileName)
+        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description")] Projeto projeto, IFormFile file)
         {
             
             if (ModelState.IsValid)
             {
-                if (!ValidateFileExtension(projectFileName))
+                if (file == null || file.Length == 0)
+                    return Content("file not selected");
+
+                if (!ValidateFileExtension(file.FileName))
                 {
                     ViewData["ExtensionError"] = "A extensão do ficheiro não é válida. Apenas são aceites ficheiros \".rar\"";
                     return View(projeto);
                 }
 
-                var extensions = Path.GetExtension(projectFileName);
+                var extensions = Path.GetExtension(file.FileName);
 
                 if (_context.Projeto.ToList().Count() == 0)
                     projeto.ProjectFileName = "Projeto1" + extensions;
                 else
                     projeto.ProjectFileName = "Projeto" + (_context.Projeto.Max(p => p.ProjetoId) + 1) + extensions;
 
+                var path = Path.Combine(
+                            Directory.GetCurrentDirectory(), "wwwroot/UploadedProjects",
+                            projeto.ProjectFileName);
+
+                using (var stream = new FileStream(path, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+                
                 _context.Add(projeto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -92,13 +104,28 @@ namespace DBMProject.Controllers
 
         private bool ValidateFileExtension(string fileName)
         {
-            return Path.GetExtension(fileName).ToLower() == ".rar";
+            return Path.GetExtension(fileName).ToLower() == ".rar" || Path.GetExtension(fileName).ToLower() == ".zip";
         }
 
-        [HttpPost]
-        public JsonResult UploadProject(IFormFile file)
+        /*[HttpPost]
+        public async Task<IActionResult> UploadProject(IFormFile file)
         {
-            var uploads = Path.Combine(_environment.WebRootPath, "UploadedProjects/");
+            if (file == null || file.Length == 0)
+                return Content("file not selected");
+
+            var path = Path.Combine(
+                        Directory.GetCurrentDirectory(), "wwwroot",
+                        file.FileName);
+
+            using (var stream = new FileStream(path, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return RedirectToAction("Index");
+
+
+            /*var uploads = Path.Combine(_environment.WebRootPath, "UploadedProjects/");
 
             List<string> errors = new List<string>();
 
@@ -107,7 +134,7 @@ namespace DBMProject.Controllers
                 string fileName;
 
                 var extensions = Path.GetExtension(file.FileName);
-
+                
                 if (_context.Projeto.ToList().Count() == 0)
                     fileName = "Projeto1" + extensions;
                 else
@@ -120,7 +147,7 @@ namespace DBMProject.Controllers
             }
 
             return Json(errors);
-        }
+        }*/
 
         public ActionResult DownloadProject(string searchName, string fileName)
         {

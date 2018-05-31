@@ -11,6 +11,9 @@ using Microsoft.Extensions.DependencyInjection;
 using DBMProject.Data;
 using DBMProject.Models;
 using DBMProject.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace DBMProject
 {
@@ -32,7 +35,8 @@ namespace DBMProject
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-           
+            services.AddSingleton<IFileProvider>(
+                new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UploadedProjects")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
@@ -53,6 +57,12 @@ namespace DBMProject
             services.Configure<AuthMessageSenderOptions>(Configuration);
 
             services.AddMvc();
+
+            services.Configure<FormOptions>(x =>
+            {
+                x.ValueLengthLimit = int.MaxValue;
+                x.MultipartBodyLengthLimit = int.MaxValue;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

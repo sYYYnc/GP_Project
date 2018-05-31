@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-4">
         
-        <form asp-action="Create" onsubmit="uploadfile();">
+        <form asp-controller="Projetos" asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="ProjectName" class="control-label"></label>
@@ -32,7 +32,7 @@
             <hr />
             <h3>Anexe o seu projeto...</h3>
             <div class="form-group">
-                <input id="projectFile" asp-for="ProjectFileName" name="projectFileName" class="form-control" type="file" required />
+                <input id="projectFile" asp-for="ProjectFileName" name="file" class="form-control" type="file" required />
                 <p style="color: darkred">@ViewData["ExtensionError"]</p>
             </div>
             <br />
