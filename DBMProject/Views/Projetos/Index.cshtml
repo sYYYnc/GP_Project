@@ -8,6 +8,26 @@
 <p>
     <a asp-action="Create">Upload ficheiro</a>
 </p>
+
+
+@foreach (var item in Model)
+{
+<div class="card_projectos">
+    <div class="card_content">
+    
+    <div class="card_title">@Html.DisplayFor(modelItem => item.ProjectName)</div>
+    <p>@Html.DisplayNameFor(model => model.Technology) </p>
+    <p>@Html.DisplayFor(modelItem => item.Technology)</p>
+    <p> @Html.DisplayNameFor(model => model.Size) </p>
+    <p>@Html.DisplayFor(modelItem => item.Size) </p>
+    </div>
+</div>  
+        
+}
+
+
+
+
 <table class="table">
     <thead>
         <tr>

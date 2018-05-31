@@ -1,4 +1,5 @@
 ﻿body {
+    background-color: #F0F0F0;
         padding-bottom: 20px;
 }
 
@@ -150,7 +151,7 @@ a {
     max-width: 525px;
     min-height: 670px;
     position: relative;
-    background: url(https://raw.githubusercontent.com/khadkamhn/day-01-login-form/master/img/bg.jpg) no-repeat center;
+    background: url(/images/bcg.png) no-repeat center;
     box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 
@@ -309,6 +310,35 @@ a {
 }
 
 
+/*LISTAR PROJECTOS*/
+
+.card_projectos {
+    display: inline-flex;
+    width: 100%;
+    margin: auto;
+    padding: 40px;
+    max-width: 200px;
+    min-height: 400px;
+    position: relative;
+    color: black;
+    background-color: white;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+
+.card_content {
+    display:block;
+}
+
+.card_title {
+    background: rgba(157, 187, 63, .85);
+    padding: 3.5% 0 2.5% 0;
+    color: white;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
