@@ -80,11 +80,9 @@ namespace DBMProject.Controllers
                 else
                     projeto.ProjectFileName = "Projeto" + (_context.Projeto.Max(p => p.ProjetoId) + 1) + extensions;
 
-                var path = Path.Combine(
-                            Directory.GetCurrentDirectory(), "wwwroot/UploadedProjects",
-                            projeto.ProjectFileName);
+                var path = Path.Combine(_environment.WebRootPath, "UploadedProjects/");
 
-                using (var stream = new FileStream(path, FileMode.Create))
+                using (var stream = new FileStream(Path.Combine(path, projeto.ProjectFileName), FileMode.Create))
                 {
                     await file.CopyToAsync(stream);
                 }
@@ -106,49 +104,7 @@ namespace DBMProject.Controllers
         {
             return Path.GetExtension(fileName).ToLower() == ".rar" || Path.GetExtension(fileName).ToLower() == ".zip";
         }
-
-        /*[HttpPost]
-        public async Task<IActionResult> UploadProject(IFormFile file)
-        {
-            if (file == null || file.Length == 0)
-                return Content("file not selected");
-
-            var path = Path.Combine(
-                        Directory.GetCurrentDirectory(), "wwwroot",
-                        file.FileName);
-
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
-                await file.CopyToAsync(stream);
-            }
-
-            return RedirectToAction("Index");
-
-
-            /*var uploads = Path.Combine(_environment.WebRootPath, "UploadedProjects/");
-
-            List<string> errors = new List<string>();
-
-            if (file != null)
-            {
-                string fileName;
-
-                var extensions = Path.GetExtension(file.FileName);
-                
-                if (_context.Projeto.ToList().Count() == 0)
-                    fileName = "Projeto1" + extensions;
-                else
-                    fileName = "Projeto" + (_context.Projeto.Max(p => p.ProjetoId) + 1) + extensions;
-
-                using (var fileStream = new FileStream(Path.Combine(uploads, fileName), FileMode.Create, FileAccess.ReadWrite))
-                {
-                    file.CopyTo(fileStream);
-                }
-            }
-
-            return Json(errors);
-        }*/
-
+        
         public ActionResult DownloadProject(string searchName, string fileName)
         {
             return File("~/UploadedProjects/" + searchName, "application/x-zip-compressed", fileName + ".rar");

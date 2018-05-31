@@ -7,12 +7,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DBMProject.Data;
-using DBMProject.Models;
-using DBMProject.Services;
 using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Microsoft.AspNetCore.Http.Features;
+using System;
 
 namespace DBMProject
 {
@@ -34,8 +32,8 @@ namespace DBMProject
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
 
-            services.AddSingleton<IFileProvider>(
-                new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UploadedProjects")));
+            //services.AddSingleton<IFileProvider>(
+            //    new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/UploadedProjects")));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
