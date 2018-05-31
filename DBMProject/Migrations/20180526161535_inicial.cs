@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DBMProject.Migrations
 {
-    public partial class Local : Migration
+    public partial class inicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

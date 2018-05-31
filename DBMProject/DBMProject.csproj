@@ -5,6 +5,13 @@
     <UserSecretsId>aspnet-DBMProject-6B3AA4D3-6F27-4AC2-87A7-C5D4B67D0852</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20180526120946_Local.cs" />
+    <Compile Remove="Migrations\20180526120946_Local.Designer.cs" />
+    <Compile Remove="Migrations\20180526160511_teste.cs" />
+    <Compile Remove="Migrations\20180526160511_teste.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
