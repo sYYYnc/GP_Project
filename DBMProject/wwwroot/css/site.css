@@ -1,6 +1,5 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+        padding-bottom: 20px;
 }
 
 /* Wrapping element */
@@ -8,6 +7,10 @@
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
+}
+
+nav {
+    padding-bottom:50px;
 }
 
 /* Carousel */
@@ -25,6 +28,101 @@
 #qrCode {
     margin: 15px;
 }
+
+
+/*CONTAINER*/
+
+.container {
+    width:100%;
+}
+#container_menu {
+    width:80%;
+    margin:auto;
+}
+
+
+/*LINKS*/
+
+
+ul li {
+    display: inline;
+    text-align: center;
+    padding:20px;
+}
+
+.menu {
+    display:flex;
+    padding-top:30px;
+}
+
+.menu a {
+    text-decoration: none;
+    display: inline-block; 
+    padding: .75rem 0;
+    margin: 0;   
+
+}
+
+.menu a, a:visited {
+  text-decoration: none;
+  position: relative;
+  color: #069;
+}
+.menu a:after, a:visited:after {
+  content: '';
+  height: 3px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  background: #000;
+  transition: 0.2s;
+}
+.menu a:hover:after, a:visited:hover:after {
+  width: 100%;
+}
+
+.menu a, a:visited {
+    text-decoration: none;
+    position: relative;
+    color: #000;
+}
+
+.menu    a:after, a:visited:after {
+        content: '';
+        height: 3px;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        background: #000;
+        transition: 0.2s;
+    }
+
+.menu    a:hover:after, a:visited:hover:after {
+        width: 100%;
+    }
+
+
+
+#img_principal {
+    width:100%;
+    
+    left: 0;
+    right: 0;
+}
+
+footer {
+
+    z-index: -1;
+    background-color:#000;
+    color: #fff;
+    position: relative;
+    width: 100%;
+    bottom: 0;
+}
+
+
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
