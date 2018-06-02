@@ -26,9 +26,12 @@ namespace DBMProject
         {
             //Criação de branch para login/registo
 
-            var connectionString = @"Server = tcp:dbmproject20180525110553dbserver.database.windows.net,1433; Initial Catalog = GPprojeto_db; Persist Security Info = False; User ID = Projetom7; Password =M7projeto_2018; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
+            /* var connectionString = @"Server = tcp:dbmproject20180525110553dbserver.database.windows.net,1433; Initial Catalog = GPprojeto_db; Persist Security Info = False; User ID = Projetom7; Password =M7projeto_2018; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString)); 
+                options.UseSqlServer(connectionString)); */
+
+            services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
@@ -40,7 +43,7 @@ namespace DBMProject
                 config.Password.RequiredLength = 6;
             })
             .AddEntityFrameworkStores<ApplicationDbContext>()
-            .AddDefaultTokenProviders();
+            .AddDefaultTokenProviders(); 
 
 
             // Add application services.
@@ -85,21 +88,29 @@ namespace DBMProject
             var RoleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
             var UserManager = serviceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
+            string[] roleNames = { "Admin", "Aluno", "Docente" };
 
             IdentityResult roleResult;
             //Adding Addmin Role  
-            var roleCheck = await RoleManager.RoleExistsAsync("Admin");
-            if (!roleCheck)
+            foreach (var roleName in roleNames)
             {
-                //create the roles and seed them to the database  
-                roleResult = await RoleManager.CreateAsync(new IdentityRole("Admin"));
+                var roleCheck = await RoleManager.RoleExistsAsync(roleName);
+                if (!roleCheck)
+                {
+                    //create the roles and seed them to the database  
+                    roleResult = await RoleManager.CreateAsync(new IdentityRole(roleName));
+                }
             }
+            
             //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
             ApplicationUser user = await UserManager.FindByEmailAsync("portfolio.admin@mail.com");
             var User = new ApplicationUser()
             {
                 UserName = "Admin",
-                Email = "portfolio.admin@mail.com"
+                Email = "portfolio.admin@mail.com",
+                Name = "Administrador",
+                Number = "999999999",
+                EmailConfirmed = true
             };
 
             if (user == null)
@@ -110,9 +121,6 @@ namespace DBMProject
                     await UserManager.AddToRoleAsync(User, "Admin");
                 }
             }
-
-
-
         }
 
 
