@@ -9,24 +9,26 @@
     <a asp-action="Create">Upload ficheiro</a>
 </p>
 
+<div class="card_container">
 
-@foreach (var item in Model)
-{
-<div class="card_projectos">
-    <div class="card_content">
-    
-    <div class="card_title">@Html.DisplayFor(modelItem => item.ProjectName)</div>
-    <p>@Html.DisplayNameFor(model => model.Technology) </p>
-    <p>@Html.DisplayFor(modelItem => item.Technology)</p>
-    <p> @Html.DisplayNameFor(model => model.Size) </p>
-    <p>@Html.DisplayFor(modelItem => item.Size) </p>
-    </div>
-</div>  
-        
-}
+    @foreach (var item in Model)
+    {
+        <div class="card_projectos">
+            <div class="card_title">@Html.DisplayFor(modelItem => item.ProjectName)</div>
+            <div class="card_content">
 
 
+                <p>@Html.DisplayNameFor(model => model.Technology) </p>
+                <p>@Html.DisplayFor(modelItem => item.Technology)</p>
+                <p> @Html.DisplayNameFor(model => model.Size) </p>
+                <p>@Html.DisplayFor(modelItem => item.Size) </p>
+            </div>
+        </div>
 
+    }
+
+
+</div>
 
 <table class="table">
     <thead>

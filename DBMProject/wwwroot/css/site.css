@@ -1,6 +1,9 @@
 ﻿body {
     background-color: #F0F0F0;
-        padding-bottom: 20px;
+    background: url(/images/back.png);
+    padding-bottom: 20px;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Wrapping element */
@@ -11,6 +14,7 @@
 }
 
 nav {
+    
     padding-bottom:50px;
 }
 
@@ -37,8 +41,9 @@ nav {
     width:100%;
 }
 #container_menu {
-    width:80%;
-    margin:auto;
+    background-color: rgba(40,57,101,.9);
+    width: 80%;
+    margin: auto;
 }
 
 
@@ -151,7 +156,6 @@ a {
     max-width: 525px;
     min-height: 670px;
     position: relative;
-    background: url(/images/bcg.png) no-repeat center;
     box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 
@@ -312,31 +316,34 @@ a {
 
 /*LISTAR PROJECTOS*/
 
+.card_container {
+    display:flex;
+}
+
 .card_projectos {
-    display: inline-flex;
+    display: block;
     width: 100%;
-    margin: auto;
-    padding: 40px;
-    max-width: 200px;
-    min-height: 400px;
-    position: relative;
+    margin: 50px;
+    width: 300px;
+    height: 200px;
     color: black;
     background-color: white;
     box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
 
 .card_content {
-    display:block;
+    
+    width: 80%;
+    margin:auto;
 }
 
 .card_title {
     background: rgba(157, 187, 63, .85);
-    padding: 3.5% 0 2.5% 0;
+    margin: auto;
+    text-align:center;
     color: white;
     font-family: 'Roboto Condensed', sans-serif;
     text-transform: uppercase;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
 
