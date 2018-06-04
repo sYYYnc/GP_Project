@@ -1,6 +1,6 @@
 ﻿body {
+    /*background-image: url(../images/back.png);*/
     background-color: #F0F0F0;
-    background: url(/images/back.png);
     padding-bottom: 20px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -41,7 +41,7 @@ nav {
     width:100%;
 }
 #container_menu {
-    background-color: rgba(40,57,101,.9);
+
     width: 80%;
     margin: auto;
 }
@@ -58,52 +58,40 @@ ul li {
 
 .menu {
     display:flex;
-    padding-top:30px;
+    padding-top:40px;
 }
 
 .menu a {
+    text-transform: uppercase;
     text-decoration: none;
+    font-weight: bold;
     display: inline-block; 
     padding: .75rem 0;
-    margin: 0;   
+    margin: 0; 
+    color:rgba(40,57,101,.9);
 
 }
 
 .menu a, a:visited {
   text-decoration: none;
   position: relative;
-  color: #069;
+  color: #1161ee;
 }
-.menu a:after, a:visited:after {
-  content: '';
-  height: 3px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0%;
-  background: #000;
-  transition: 0.2s;
-}
-.menu a:hover:after, a:visited:hover:after {
-  width: 100%;
-}
-
-.menu a, a:visited {
-    text-decoration: none;
-    position: relative;
-    color: #000;
-}
-
-.menu    a:after, a:visited:after {
+    .menu a:after, a:visited:after {
         content: '';
         height: 3px;
         position: absolute;
         bottom: 0;
         left: 0;
         width: 0%;
-        background: #000;
+        background: rgba(40,57,101,.9);
         transition: 0.2s;
     }
+.menu a:hover:after, a:visited:hover:after {
+  width: 100%;
+}
+
+
 
 .menu    a:hover:after, a:visited:hover:after {
         width: 100%;
@@ -121,7 +109,7 @@ ul li {
 footer {
 
     z-index: -1;
-    background-color:#000;
+    background-color:rgba(40,57,101,.9);
     color: #fff;
     position: relative;
     width: 100%;
@@ -146,7 +134,7 @@ footer {
 }
 
 a {
-    color: inherit;
+    color: #1161ee;
     text-decoration: none
 }
 
@@ -154,7 +142,15 @@ a {
     width: 100%;
     margin: auto;
     max-width: 525px;
-    min-height: 670px;
+    min-height: 700px;
+    position: relative;
+    box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+.login-wrap2 {
+    width: 100%;
+    margin: auto;
+    max-width: 525px;
+    min-height: 900px;
     position: relative;
     box-shadow: 0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
@@ -318,6 +314,7 @@ a {
 
 .card_container {
     display:flex;
+    flex-wrap:wrap;
 }
 
 .card_projectos {
@@ -338,13 +335,14 @@ a {
 }
 
 .card_title {
-    background: rgba(157, 187, 63, .85);
+    background: rgba(40,57,101,.9);
     margin: auto;
-    text-align:center;
+    text-align: center;
     color: white;
     font-family: 'Roboto Condensed', sans-serif;
+    word-wrap: break-word;
     text-transform: uppercase;
-    width: 100%;
+    width: 200px;
 }
 
 /* Hide/rearrange for smaller screens */

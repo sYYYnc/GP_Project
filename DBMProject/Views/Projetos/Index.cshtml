@@ -13,17 +13,19 @@
 
     @foreach (var item in Model)
     {
-        <div class="card_projectos">
-            <div class="card_title">@Html.DisplayFor(modelItem => item.ProjectName)</div>
-            <div class="card_content">
+    <div class="card_projectos">
+        <div class="card_title">@Html.DisplayFor(modelItem => item.ProjectName)</div>
+        <div class="card_content">
 
 
-                <p>@Html.DisplayNameFor(model => model.Technology) </p>
-                <p>@Html.DisplayFor(modelItem => item.Technology)</p>
-                <p> @Html.DisplayNameFor(model => model.Size) </p>
-                <p>@Html.DisplayFor(modelItem => item.Size) </p>
-            </div>
+            <h4>@Html.DisplayNameFor(model => model.Technology) </h4>
+            <p>@Html.DisplayFor(modelItem => item.Technology)</p>
+            <h4> @Html.DisplayNameFor(model => model.Size) </h4>
+            <p>@Html.DisplayFor(modelItem => item.Size) </p>
         </div>
+        <a asp-action="Details" asp-route-id="@item.ProjetoId">Details</a>
+        @Html.ActionLink("Download", "DownloadProject", new { searchName = item.ProjectFileName, fileName = item.ProjectName })
+    </div>
 
     }
 

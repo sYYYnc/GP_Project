@@ -17,30 +17,11 @@
     </environment>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <div id="container_menu">
-                <div>
-                    <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand"><img src="~/images/it4u.png" alt="it4u"></a>
-                </div>
-                <div class="menu">
-                    <ul>
-                        <li><a asp-area="" asp-controller="Projetos" asp-action="Index">Projetos disponiveis</a></li>
-                        <li><a asp-area="" asp-controller="Home" asp-action="AdicionarProjetos">Adicionar projetos</a></li>
-                        @await Html.PartialAsync("_LoginPartial")
 
-                    </ul>
-                   
-                </div>
-            </div>
-        </div>
-    </nav>
     <div class="container body-content">
         @RenderBody()
         
-        <footer>
-            <p>&copy; 2018 - Gestor de projetos</p>
-        </footer>
+
     </div>
 
 
