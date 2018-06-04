@@ -33,7 +33,7 @@ namespace DBMProject.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress("dbmproject@contoso.com", "DBM Project"),
+                From = new EmailAddress("portofolio.projectos@mail.com", "IT4U-Gestor de Projectos"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message
