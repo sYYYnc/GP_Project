@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace DBMProject.Models.ProjectsManagement
 {
@@ -25,6 +21,9 @@ namespace DBMProject.Models.ProjectsManagement
         [DisplayName("Descrição")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Associe uma descrição do projeto para melhor percepção")]
         public string Description { get; set; }
+
+        [DisplayName("Localização Geográfica")]
+        public string Localizacao { get; set; }
 
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Anexo do projeto em falta")]
 
