@@ -26,12 +26,12 @@ namespace DBMProject
         {
             //Criação de branch para login/registo
 
-            /* var connectionString = @"Server = tcp:dbmproject20180525110553dbserver.database.windows.net,1433; Initial Catalog = GPprojeto_db; Persist Security Info = False; User ID = Projetom7; Password =M7projeto_2018; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
+            var connectionString = @"Server = tcp:dbmproject20180525110553dbserver.database.windows.net,1433; Initial Catalog = GPprojeto_db; Persist Security Info = False; User ID = Projetom7; Password =M7projeto_2018; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30";
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString)); */
+                options.UseSqlServer(connectionString)); 
 
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))); 
+            /* services.AddDbContext<ApplicationDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));  */ 
 
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
@@ -102,7 +102,7 @@ namespace DBMProject
                 }
             }
             
-            //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
+           /*  //Assign Admin role to the main User here we have given our newly loregistered login id for Admin management  
             ApplicationUser user = await UserManager.FindByEmailAsync("portfolio.admin@mail.com");
             var User = new ApplicationUser()
             {
@@ -120,7 +120,7 @@ namespace DBMProject
                 {
                     await UserManager.AddToRoleAsync(User, "Admin");
                 }
-            }
+            } */
         }
 
 
