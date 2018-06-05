@@ -27,7 +27,7 @@ namespace DBMProject.Controllers
         // GET: Projetos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Projeto.ToListAsync());
+            return View(await _context.Projetos.ToListAsync());
         }
 
         // GET: Projetos/Details/5
@@ -38,7 +38,7 @@ namespace DBMProject.Controllers
                 return NotFound();
             }
 
-            var projeto = await _context.Projeto
+            var projeto = await _context.Projetos
                 .SingleOrDefaultAsync(m => m.ProjetoId == id);
             if (projeto == null)
             {
@@ -51,6 +51,7 @@ namespace DBMProject.Controllers
         // GET: Projetos/Create
         public IActionResult Create()
         {
+            ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName");
             return View();
         }
 
@@ -59,7 +60,7 @@ namespace DBMProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description")] Projeto projeto, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId")] Projeto projeto, IFormFile file)
         {
             
             if (ModelState.IsValid)
@@ -73,12 +74,18 @@ namespace DBMProject.Controllers
                     return View(projeto);
                 }
 
+                if (projeto.AcademicDegreeId == 0)
+                {
+                    ViewData["AcademicDegreeIdError"] = "Selecione o ciclo de estudos onde se enquadra o projeto";
+                    return View(projeto);
+                }
+
                 var extensions = Path.GetExtension(file.FileName);
 
-                if (_context.Projeto.ToList().Count() == 0)
+                if (_context.Projetos.ToList().Count() == 0)
                     projeto.ProjectFileName = "Projeto1" + extensions;
                 else
-                    projeto.ProjectFileName = "Projeto" + (_context.Projeto.Max(p => p.ProjetoId) + 1) + extensions;
+                    projeto.ProjectFileName = "Projeto" + (_context.Projetos.Max(p => p.ProjetoId) + 1) + extensions;
 
                 var path = Path.Combine(_environment.WebRootPath, "UploadedProjects/");
 
@@ -97,7 +104,7 @@ namespace DBMProject.Controllers
 
         private bool ProjetoExists(int id)
         {
-            return _context.Projeto.Any(e => e.ProjetoId == id);
+            return _context.Projetos.Any(e => e.ProjetoId == id);
         }
 
         private bool ValidateFileExtension(string fileName)

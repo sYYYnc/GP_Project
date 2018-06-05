@@ -5,10 +5,23 @@ using System.Collections.Generic;
 
 namespace DBMProject.Migrations
 {
-    public partial class inicial : Migration
+    public partial class Local : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AcademicDegrees",
+                columns: table => new
+                {
+                    AcademicDegreeId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AcademicDegreeName = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AcademicDegrees", x => x.AcademicDegreeId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
@@ -51,11 +64,12 @@ namespace DBMProject.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Projeto",
+                name: "Projetos",
                 columns: table => new
                 {
                     ProjetoId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AcademicDegreeId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: false),
                     ProjectFileName = table.Column<string>(nullable: true),
                     ProjectName = table.Column<string>(nullable: false),
@@ -64,7 +78,13 @@ namespace DBMProject.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Projeto", x => x.ProjetoId);
+                    table.PrimaryKey("PK_Projetos", x => x.ProjetoId);
+                    table.ForeignKey(
+                        name: "FK_Projetos_AcademicDegrees_AcademicDegreeId",
+                        column: x => x.AcademicDegreeId,
+                        principalTable: "AcademicDegrees",
+                        principalColumn: "AcademicDegreeId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -211,6 +231,11 @@ namespace DBMProject.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Projetos_AcademicDegreeId",
+                table: "Projetos",
+                column: "AcademicDegreeId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -231,13 +256,16 @@ namespace DBMProject.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Projeto");
+                name: "Projetos");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "AcademicDegrees");
         }
     }
 }

@@ -26,7 +26,11 @@ namespace DBMProject.Models.ProjectsManagement
         [Required(AllowEmptyStrings = false, ErrorMessage = "Associe uma descrição do projeto para melhor percepção")]
         public string Description { get; set; }
 
-        //[Required(AllowEmptyStrings = false, ErrorMessage = "Anexo do projeto em falta")]
+        [DisplayName("Ciclo de Estudos")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Indique o ciclo de estudos associado ao projeto")]
+        public int AcademicDegreeId { get; set; }
+
+        public virtual AcademicDegree AcademicDegree { get; set; }
 
         public string ProjectFileName { get; set; }
     }

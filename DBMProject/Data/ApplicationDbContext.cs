@@ -24,6 +24,8 @@ namespace DBMProject.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<DBMProject.Models.ProjectsManagement.Projeto> Projeto { get; set; }
+        public DbSet<Projeto> Projetos { get; set; }
+
+        public DbSet<AcademicDegree> AcademicDegrees { get; set; }
     }
 }
