@@ -42,7 +42,8 @@ nav {
 .grdp {
     background-color: #fb6262;
     color: #fff;
-    
+    border-radius: 25px;
+    padding:10px;
 }
 
 /*CONTAINER*/
