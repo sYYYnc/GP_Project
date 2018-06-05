@@ -32,6 +32,8 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Projetos" asp-action="Index">Projetos disponiveis</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="AdicionarProjetos">Adicionar projetos</a></li>
+                    <li><a asp-area="" asp-controller="UserManagement" asp-action="Index">Administrador</a></li>
+                    <li><a asp-area="" asp-controller="ValidarProjetos" asp-action="Index">Validar Projetos</a></li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -45,7 +47,7 @@
         </footer>
     </div>
 
-    
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -67,7 +69,7 @@
         </script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
     </environment>
-        
+
 
     @RenderSection("Scripts", required: false)
 </body>

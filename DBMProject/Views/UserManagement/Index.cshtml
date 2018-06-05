@@ -1,0 +1,29 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model DBMProject.ViewModels.UserManagementIndexViewModel
+@inject UserManager<ApplicationUser> userManager
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>Roles</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Name</td>
+                <td>@user.Email</td>
+                <td>@string.Join(",", await userManager.GetRolesAsync(user))</td>
+                <td><a class="btn btn-outline-info btn-sm" asp-controller="UserManagement" asp-action="AddRole" asp-route-id="@user.Id">Add Role</a></td>
+                <td></td>
+                <td><a class="btn btn-danger btn-sm" asp-controller="UserManagement" asp-action="RemoveUser" asp-route-id="@user.Id">Remover Utilizador</a></td>
+            </tr>
+
+        }
+    </tbody>
+</table>

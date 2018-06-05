@@ -1,0 +1,14 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model DBMProject.ViewModels.UserManagementAddRoleViewModel
+@inject UserManager<ApplicationUser> userManager
+
+
+<h3> Adicionar um Role a @Model.Nome </h3>
+<div asp-validation-summary="All"></div>
+<form asp-controller="UserManagement" asp-action="AddRole">
+
+    <input asp-for="UserId" type="hidden" />
+
+    <select asp-for="NewRole" asp-items="Model.Roles"></select>
+    <input type="submit" value="Add Role" />
+</form>
