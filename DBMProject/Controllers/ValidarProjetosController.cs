@@ -15,15 +15,22 @@ namespace DBMProject.Controllers
         {
             _context = context;
         }
+        /// <summary>
+        /// Controlador que retorna a View Index com a lista de projectos por validar
+        /// </summary>
+        /// <returns></returns>
 
-        // GET: ValidarProjetos
         public async Task<IActionResult> Index()
         {
             return View(await _context.Projeto.Where(m => m.Validado != true).ToListAsync());
         }
 
 
-
+        /// <summary>
+        /// Controlador que valida o projecto com o Id escolhido
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public async Task<IActionResult> ValidarProjeto(int? id)
         {
 
@@ -47,22 +54,6 @@ namespace DBMProject.Controllers
 
 
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
