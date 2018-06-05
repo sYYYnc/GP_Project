@@ -1,6 +1,14 @@
 ﻿@model RegisterViewModel
 
+<script type="text/javascript">
 
+    function AlertName() {
+
+        alert('You clicked !');
+
+    }
+
+</script>
 
 
 @{
@@ -72,20 +80,34 @@ else
                             <input asp-for="ConfirmPassword" class="input" />
                             <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                         </div>
+                        <div class="group">
+                            <div class="grdp">
+
+
+                                <p>Caro Utilizador,</p>
+
+                                <p>Os seus dados são muito importante para nós. Por isso, e com a entrada em vigor da nova lei de protecção de dados, queremos pedir-lhe que aceite o tratamento dos seus dados pessoais.</p>
+
+                                <p>Caso não o faça, não podemos manter a sua informação pessoal na nossa base de dados.</p>
+                                <input type="checkbox" onchange="document.getElementById('but_submit').disabled = !this.checked;" /> Aceita?
+                            </div>
+                        </div>
+
 
                         <div class="group">
-                            <input type="submit" class="button" value="Registar">
+                            <input type="submit" id="but_submit" class="button" value="Registar" disabled>
                         </div>
                     </form>
-                    <div class="hr"></div>
-                    <div class="foot-lnk">
-                        <div class="group">
 
-                            <p>
-                                <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">Já é um utilizador registado?</a>
-                            </p>
-                        </div>
-                    </div>
+                    @*<div class="hr"></div>
+                        <div class="foot-lnk">
+                            <div class="group">
+
+                                <p>
+                                    <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">Já é um utilizador registado?</a>
+                                </p>
+                            </div>
+                        </div>*@
                 </div>
                 <div class="sign-up-htm">
 
@@ -159,3 +181,4 @@ else
 @section Scripts {
     @await Html.PartialAsync("_ValidationScriptsPartial")
 }
+
