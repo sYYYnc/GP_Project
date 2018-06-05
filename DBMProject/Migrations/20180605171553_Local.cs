@@ -71,7 +71,7 @@ namespace DBMProject.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AcademicDegreeId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: false),
-                    ProjectFileName = table.Column<string>(nullable: true),
+                    ProjectFileName = table.Column<string>(nullable: false),
                     ProjectName = table.Column<string>(nullable: false),
                     Size = table.Column<double>(nullable: false),
                     Technology = table.Column<string>(nullable: false)

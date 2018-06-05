@@ -98,7 +98,8 @@ namespace DBMProject.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<string>("ProjectFileName");
+                    b.Property<string>("ProjectFileName")
+                        .IsRequired();
 
                     b.Property<string>("ProjectName")
                         .IsRequired();

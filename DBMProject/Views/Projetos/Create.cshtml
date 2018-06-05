@@ -40,7 +40,7 @@
             <h3>Anexe o seu projeto...</h3>
             <div class="form-group">
                 <input id="projectFile" asp-for="ProjectFileName" name="file" class="form-control" type="file" required />
-                <p style="color: darkred">@ViewData["ExtensionError"]</p>
+                <span asp-validation-for="ProjectFileName" class="text-danger"></span>
             </div>
             <br />
 

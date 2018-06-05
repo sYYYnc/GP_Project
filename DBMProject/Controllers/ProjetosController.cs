@@ -60,7 +60,7 @@ namespace DBMProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId")] Projeto projeto, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,ProjectFileName")] Projeto projeto, IFormFile file)
         {
             
             if (ModelState.IsValid)
@@ -71,16 +71,20 @@ namespace DBMProject.Controllers
                 if (!ValidateFileExtension(file.FileName))
                 {
                     ViewData["ExtensionError"] = "A extensão do ficheiro não é válida. Apenas são aceites ficheiros \".rar\"";
+                    ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName");
                     return View(projeto);
                 }
 
                 if (projeto.AcademicDegreeId == 0)
                 {
-                    ViewData["AcademicDegreeIdError"] = "Selecione o ciclo de estudos onde se enquadra o projeto";
+                    //ViewData["AcademicDegreeIdError"] = "Selecione o ciclo de estudos onde se enquadra o projeto";
+                    ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName");
                     return View(projeto);
                 }
 
                 var extensions = Path.GetExtension(file.FileName);
+
+                projeto.Size = ConvertBytesToMBytes(file.Length);
 
                 if (_context.Projetos.ToList().Count() == 0)
                     projeto.ProjectFileName = "Projeto1" + extensions;
@@ -99,6 +103,8 @@ namespace DBMProject.Controllers
                 return RedirectToAction(nameof(Index));
             }
             var errors = ModelState.Values.SelectMany(v => v.Errors);
+
+            ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName");
             return View(projeto);
         }
 
@@ -117,5 +123,9 @@ namespace DBMProject.Controllers
             return File("~/UploadedProjects/" + searchName, "application/x-zip-compressed", fileName + ".rar");
         }
         
+        private double ConvertBytesToMBytes(long bytes)
+        {
+            return (bytes / 1024f) / 1024f;
+        }
     }
 }
