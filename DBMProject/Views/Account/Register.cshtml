@@ -1,9 +1,13 @@
 ﻿@model RegisterViewModel
+
+
+
+
 @{
     ViewData["Title"] = "Registo";
 }
 
-<h2>@ViewData["Title"]</h2>
+
 
 @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
 {
@@ -22,42 +26,123 @@
 else
 {
 
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
-                <h4>Criar um nova conta.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" class="form-control" />
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Name"></label>
-                    <input asp-for="Name" class="form-control" />
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Number "></label>
-                    <input asp-for="Number" class="form-control" />
-                    <span asp-validation-for="Number" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" class="form-control" />
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="ConfirmPassword"></label>
-                    <input asp-for="ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </div>
 
-                <button type="submit" class="btn btn-default">Register</button>
-            </form>
+    <div class="login-wrap2">
+
+        <div class="login-html">
+            <div style="margin-bottom:30px; color:white; font-size:2em">IT4U - Gestor de Projectos</div>
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Registar</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">IT4U</label>
+
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <form asp-route-returnurl="@ViewData["ReturnUrl"]" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="group">
+
+                            <label asp-for="Email" class="label"></label>
+                            <input asp-for="Email" class="input" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="group">
+
+                            <label asp-for="Name" class="label"></label>
+                            <input asp-for="Name" class="input" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+
+                        <div class="group">
+
+                            <label asp-for="Number" class="label"></label>
+                            <input asp-for="Number" class="input" />
+                            <span asp-validation-for="Number" class="text-danger"></span>
+                        </div>
+
+                        <div class="group">
+
+                            <label asp-for="Password" class="label"></label>
+                            <input asp-for="Password" class="input" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="group">
+
+                            <label asp-for="ConfirmPassword" class="label"></label>
+                            <input asp-for="ConfirmPassword" class="input" />
+                            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <div class="group">
+                            <input type="submit" class="button" value="Registar">
+                        </div>
+                    </form>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <div class="group">
+
+                            <p>
+                                <a asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]">Já é um utilizador registado?</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="sign-up-htm">
+
+                    <div style="color:white">
+                        <h3>Gestor de Projectos</h3>
+                        <p>Plataforma online onde a comunidade IPS pode partilhar os seus projectos de final de curso / estágios</p>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+    @*<div class="row">
+            <div class="col-md-4">
+                <form asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                    <h4>Criar um nova conta.</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Number "></label>
+                        <input asp-for="Number" class="form-control" />
+                        <span asp-validation-for="Number" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ConfirmPassword"></label>
+                        <input asp-for="ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Register</button>
+                </form>
+            </div>
+        </div>*@
     if (ViewBag.Message != null)
     {
         <div class="alert alert-danger">
