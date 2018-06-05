@@ -25,6 +25,7 @@ namespace DBMProject.Models.ProjectsManagement
         [DisplayName("Localização Geográfica")]
         public string Localizacao { get; set; }
 
+        public bool Validado { get; set; } = false;
         //[Required(AllowEmptyStrings = false, ErrorMessage = "Anexo do projeto em falta")]
 
         public string ProjectFileName { get; set; }
