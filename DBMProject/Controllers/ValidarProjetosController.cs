@@ -22,7 +22,7 @@ namespace DBMProject.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Projeto.Where(m => m.Validado != true).ToListAsync());
+            return View(await _context.Projetos.Where(m => m.Validado != true).ToListAsync());
         }
 
 
@@ -40,7 +40,7 @@ namespace DBMProject.Controllers
             }
 
 
-            var projecto = await _context.Projeto.SingleOrDefaultAsync(m => m.ProjetoId == id);
+            var projecto = await _context.Projetos.SingleOrDefaultAsync(m => m.ProjetoId == id);
 
             if (projecto == null)
             {
@@ -70,7 +70,7 @@ namespace DBMProject.Controllers
                 return NotFound();
             }
 
-            var projeto = await _context.Projeto
+            var projeto = await _context.Projetos
                 .SingleOrDefaultAsync(m => m.ProjetoId == id);
             if (projeto == null)
             {
@@ -110,7 +110,7 @@ namespace DBMProject.Controllers
                 return NotFound();
             }
 
-            var projeto = await _context.Projeto.SingleOrDefaultAsync(m => m.ProjetoId == id);
+            var projeto = await _context.Projetos.SingleOrDefaultAsync(m => m.ProjetoId == id);
             if (projeto == null)
             {
                 return NotFound();
@@ -161,7 +161,7 @@ namespace DBMProject.Controllers
                 return NotFound();
             }
 
-            var projeto = await _context.Projeto
+            var projeto = await _context.Projetos
                 .SingleOrDefaultAsync(m => m.ProjetoId == id);
             if (projeto == null)
             {
@@ -176,15 +176,15 @@ namespace DBMProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var projeto = await _context.Projeto.SingleOrDefaultAsync(m => m.ProjetoId == id);
-            _context.Projeto.Remove(projeto);
+            var projeto = await _context.Projetos.SingleOrDefaultAsync(m => m.ProjetoId == id);
+            _context.Projetos.Remove(projeto);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProjetoExists(int id)
         {
-            return _context.Projeto.Any(e => e.ProjetoId == id);
+            return _context.Projetos.Any(e => e.ProjetoId == id);
         }
     }
 }
