@@ -25,6 +25,13 @@
                 <span asp-validation-for="Technology" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AcademicDegreeId" class="control-label"></label>
+                <select asp-for="AcademicDegreeId" asp-items="ViewBag.AcademicDegreeId" class="form-control" cols="50" rows="10">
+                    <option value="">Selecione um ciclo de estudos...</option>
+                </select>
+                <span asp-validation-for="AcademicDegreeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <textarea asp-for="Description" class="form-control" cols="50" rows="10"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
@@ -33,7 +40,7 @@
             <h3>Anexe o seu projeto...</h3>
             <div class="form-group">
                 <input id="projectFile" asp-for="ProjectFileName" name="file" class="form-control" type="file" required />
-                <p style="color: darkred">@ViewData["ExtensionError"]</p>
+                <span asp-validation-for="ProjectFileName" class="text-danger"></span>
             </div>
             <br />
 

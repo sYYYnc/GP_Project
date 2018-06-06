@@ -11,8 +11,8 @@ using System;
 namespace DBMProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180526161535_inicial")]
-    partial class inicial
+    [Migration("20180605171553_Local")]
+    partial class Local
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -76,15 +76,31 @@ namespace DBMProject.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("DBMProject.Models.ProjectsManagement.AcademicDegree", b =>
+                {
+                    b.Property<int>("AcademicDegreeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AcademicDegreeName")
+                        .IsRequired();
+
+                    b.HasKey("AcademicDegreeId");
+
+                    b.ToTable("AcademicDegrees");
+                });
+
             modelBuilder.Entity("DBMProject.Models.ProjectsManagement.Projeto", b =>
                 {
                     b.Property<int>("ProjetoId")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("AcademicDegreeId");
+
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<string>("ProjectFileName");
+                    b.Property<string>("ProjectFileName")
+                        .IsRequired();
 
                     b.Property<string>("ProjectName")
                         .IsRequired();
@@ -96,7 +112,9 @@ namespace DBMProject.Migrations
 
                     b.HasKey("ProjetoId");
 
-                    b.ToTable("Projeto");
+                    b.HasIndex("AcademicDegreeId");
+
+                    b.ToTable("Projetos");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -205,6 +223,14 @@ namespace DBMProject.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("DBMProject.Models.ProjectsManagement.Projeto", b =>
+                {
+                    b.HasOne("DBMProject.Models.ProjectsManagement.AcademicDegree", "AcademicDegree")
+                        .WithMany()
+                        .HasForeignKey("AcademicDegreeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
