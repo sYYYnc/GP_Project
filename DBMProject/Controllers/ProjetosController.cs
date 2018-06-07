@@ -27,8 +27,9 @@ namespace DBMProject.Controllers
         // GET: Projetos
         public async Task<IActionResult> Index()
         {
-            var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
-            return View(await projetosContext.ToListAsync());
+            //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
+            var projetosContext = _context.Projetos;
+            return View(await _context.Projetos.ToListAsync());
         }
 
         // GET: Projetos/Details/5
