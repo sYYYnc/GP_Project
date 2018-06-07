@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DBMProject.Data;
+using DBMProject.Models.ProjectsManagement;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using DBMProject.Data;
-using DBMProject.Models.ProjectsManagement;
 using System.IO;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace DBMProject.Controllers
 {
@@ -27,7 +26,8 @@ namespace DBMProject.Controllers
         // GET: Projetos
         public async Task<IActionResult> Index()
         {
-            var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
+            var projetosContext = _context.Projetos.Include(p => p.AcademicDegree).Where(m => m.Validado == true);
+            //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
             return View(await projetosContext.ToListAsync());
         }
 
@@ -48,7 +48,7 @@ namespace DBMProject.Controllers
 
             return View(projeto);
         }
-
+        [Authorize]
         // GET: Projetos/Create
         public IActionResult Create()
         {
@@ -63,7 +63,7 @@ namespace DBMProject.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,ProjectFileName")] Projeto projeto, IFormFile file)
         {
-            
+
             if (ModelState.IsValid)
             {
                 if (file == null || file.Length == 0)
@@ -84,7 +84,7 @@ namespace DBMProject.Controllers
                 }
 
                 await UploadProject(projeto);
-                
+
                 _context.Add(projeto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -125,12 +125,12 @@ namespace DBMProject.Controllers
         {
             return Path.GetExtension(fileName).ToLower() == ".rar" || Path.GetExtension(fileName).ToLower() == ".zip";
         }
-        
+
         public ActionResult DownloadProject(string searchName, string fileName)
         {
             return File("~/UploadedProjects/" + searchName, "application/x-zip-compressed", fileName + ".rar");
         }
-        
+
         private double ConvertBytesToMBytes(long bytes)
         {
             return (bytes / 1024f) / 1024f;

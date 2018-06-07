@@ -46,10 +46,17 @@ nav {
     padding:10px;
 }
 
+
+/*Admin Area*/
+
+.admin_area {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding-top:10px;
+}
 /*CONTAINER*/
-
-
-
 #container_menu {
     display: flex;
     flex-wrap: wrap;
