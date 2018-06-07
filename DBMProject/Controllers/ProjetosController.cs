@@ -27,9 +27,8 @@ namespace DBMProject.Controllers
         // GET: Projetos
         public async Task<IActionResult> Index()
         {
-            //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
-            var projetosContext = _context.Projetos;
-            return View(await _context.Projetos.ToListAsync());
+            var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
+            return View(await projetosContext.ToListAsync());
         }
 
         // GET: Projetos/Details/5
@@ -40,7 +39,7 @@ namespace DBMProject.Controllers
                 return NotFound();
             }
 
-            var projeto = await _context.Projetos
+            var projeto = await _context.Projetos.Include(p => p.AcademicDegree)
                 .SingleOrDefaultAsync(m => m.ProjetoId == id);
             if (projeto == null)
             {
