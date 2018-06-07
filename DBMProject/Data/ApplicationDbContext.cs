@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DBMProject.Models;
+using DBMProject.Models.ProjectsManagement;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using DBMProject.Models;
-using DBMProject.Models.ProjectsManagement;
 
 namespace DBMProject.Data
 {
@@ -27,5 +23,6 @@ namespace DBMProject.Data
         public DbSet<Projeto> Projetos { get; set; }
 
         public DbSet<AcademicDegree> AcademicDegrees { get; set; }
+        public DbSet<Comentario> Comentarios { get; set; }
     }
 }

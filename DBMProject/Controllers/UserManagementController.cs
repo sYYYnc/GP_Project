@@ -25,7 +25,14 @@ namespace DBMProject.Controllers
             _roleManager = roleManager;
         }
 
-
+        /// <summary>
+        /// Páginal inicial da Área do administrador
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult IndexAdmin()
+        {
+            return View();
+        }
 
 
         public IActionResult Index()

@@ -44,8 +44,13 @@
                     <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/it4u.png" /></a>
                     <ul>
                         <li><a asp-area="" asp-controller="Projetos" asp-action="Index">Projetos disponiveis</a></li>
-                        <li><a asp-area="" asp-controller="UserManagement" asp-action="Index">Administrador</a></li>
-                        <li><a asp-area="" asp-controller="ValidarProjetos" asp-action="Index">Validar Projetos</a></li>
+
+
+                        @*menu admin*@
+                        @await Html.PartialAsync("_Admin")
+                        @*menu docente*@
+                        @await Html.PartialAsync("_Docente")
+
                         @await Html.PartialAsync("_LoginPartial")
                     </ul>
 

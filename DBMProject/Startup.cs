@@ -3,13 +3,11 @@ using DBMProject.Models;
 using DBMProject.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using System.IO;
-using Microsoft.AspNetCore.Http.Features;
 using System;
 
 namespace DBMProject
@@ -89,7 +87,7 @@ namespace DBMProject
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            //DbInitializer.Initialize(context);
+            // DbInitializer.Initialize(context);
         }
 
 
