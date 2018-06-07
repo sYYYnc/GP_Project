@@ -10,7 +10,7 @@ namespace DBMProject.Data
     {
         public static void Initialize(ApplicationDbContext context)
         {
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
             InitAcademicDegrees(context);
         }
 
@@ -33,6 +33,8 @@ namespace DBMProject.Data
                 context.AcademicDegrees.Add(ad);
             }
             context.SaveChanges();
+
+
         }
     }
 }
