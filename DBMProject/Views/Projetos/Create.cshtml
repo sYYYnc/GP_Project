@@ -21,8 +21,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Technology" class="control-label"></label>
-                <input asp-for="Technology" class="form-control" />
+                <input asp-for="Technology" class="form-control" placeholder="Ex: ASP.NET, JavaScript" />
                 <span asp-validation-for="Technology" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localizacao" class="control-label"></label>
+                <input asp-for="Localizacao" class="form-control" placeholder="Ex: Lisboa, Setúbal, etc..."/>
+                <span asp-validation-for="Localizacao" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="AcademicDegreeId" class="control-label"></label>

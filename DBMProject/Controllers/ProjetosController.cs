@@ -61,7 +61,7 @@ namespace DBMProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,ProjectFileName")] Projeto projeto, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,ProjectFileName,Localizacao")] Projeto projeto, IFormFile file)
         {
 
             if (ModelState.IsValid)
@@ -146,6 +146,7 @@ namespace DBMProject.Controllers
                     .Where(c =>
                         c.ProjectName.Contains(textoProcura) ||
                         c.Technology.Contains(textoProcura) ||
+                        c.Localizacao.Contains(textoProcura) ||
                         c.AcademicDegree.AcademicDegreeName.Contains(textoProcura))
                     .Include(c => c.AcademicDegree);
                 return View("Index", projetos);

@@ -24,6 +24,7 @@ namespace DBMProject.Models.ProjectsManagement
         public string Description { get; set; }
 
         [DisplayName("Localização Geográfica")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor, associe uma localiação geográfica associada ao projeto")]
         public string Localizacao { get; set; }
 
         public bool Validado { get; set; } = false;
