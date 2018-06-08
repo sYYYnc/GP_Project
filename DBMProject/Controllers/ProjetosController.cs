@@ -44,6 +44,9 @@ namespace DBMProject.Controllers
         /// <returns>
         /// Retorna uma View que recebe como parametro o projeto correspondente ao id do projeto respetivo.
         /// </returns>
+
+
+
         // GET: Projetos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -210,5 +213,39 @@ namespace DBMProject.Controllers
             else
                 return RedirectToAction(nameof(Index));
         }
+
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var projeto = await _context.Projetos
+                .Include(p => p.AcademicDegree)
+                .SingleOrDefaultAsync(m => m.ProjetoId == id);
+            if (projeto == null)
+            {
+                return NotFound();
+            }
+
+            return View(projeto);
+        }
+
+        // POST: ProjetosClassificacao/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            var projeto = await _context.Projetos.SingleOrDefaultAsync(m => m.ProjetoId == id);
+            _context.Projetos.Remove(projeto);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+
     }
 }
