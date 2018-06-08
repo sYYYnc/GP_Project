@@ -1,6 +1,7 @@
 ﻿using DBMProject.Data;
 using DBMProject.Models.ProjectsManagement;
 using DBMProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -26,7 +27,7 @@ namespace DBMProject.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
 
-
+        [Authorize]
         [HttpGet]
 
         public async Task<IActionResult> Votar(int id)
