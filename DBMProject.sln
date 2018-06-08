@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DBMProject", "DBMProject\DB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavegationTests", "NavegationTests\NavegationTests.csproj", "{A62FDEB0-02D5-49E3-A88E-89B0E4C57EF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{DD66DD55-942A-4771-B910-028F28531BAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A62FDEB0-02D5-49E3-A88E-89B0E4C57EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A62FDEB0-02D5-49E3-A88E-89B0E4C57EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A62FDEB0-02D5-49E3-A88E-89B0E4C57EF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD66DD55-942A-4771-B910-028F28531BAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD66DD55-942A-4771-B910-028F28531BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD66DD55-942A-4771-B910-028F28531BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD66DD55-942A-4771-B910-028F28531BAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

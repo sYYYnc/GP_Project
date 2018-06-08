@@ -61,15 +61,12 @@ namespace DBMProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,ProjectFileName,Localizacao")] Projeto projeto, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,ProjectFileName,Localizacao")] Projeto projeto)
         {
 
             if (ModelState.IsValid)
             {
-                if (file == null || file.Length == 0)
-                    return Content("file not selected");
-
-                if (!ValidateFileExtension(file.FileName))
+                if (!ValidateFileExtension(projeto.ProjectFileName))
                 {
                     ViewData["ExtensionError"] = "A extensão do ficheiro não é válida. Apenas são aceites ficheiros \".rar\" ou \".zip\"";
                     ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName");
