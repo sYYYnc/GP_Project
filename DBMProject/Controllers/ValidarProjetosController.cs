@@ -11,6 +11,7 @@ namespace DBMProject.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+
         public ValidarProjetosController(ApplicationDbContext context)
         {
             _context = context;
@@ -19,7 +20,6 @@ namespace DBMProject.Controllers
         /// Controlador que retorna a View Index com a lista de projectos por validar
         /// </summary>
         /// <returns></returns>
-
         public async Task<IActionResult> Index()
         {
             return View(await _context.Projetos.Where(m => m.Validado != true).ToListAsync());
@@ -63,6 +63,12 @@ namespace DBMProject.Controllers
 
 
         // GET: ValidarProjetos/Details/5
+        /// <summary>
+        /// Método responsável por retornar os detalhes do projeto que corresponde ao id recebido por parametros.
+        /// </summary>
+        /// <returns>
+        /// Retorna a View com o projeto respetivo
+        /// </returns>
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -79,8 +85,12 @@ namespace DBMProject.Controllers
 
             return View(projeto);
         }
-
-        // GET: ValidarProjetos/Create
+        /// <summary>
+        /// Método responsável por passar para a View onde é possivel criar um novo projeto.
+        /// </summary>
+        /// <returns>
+        /// Retorna a View onde é possivel criar um novo projeto.
+        /// </returns>
         public IActionResult Create()
         {
             return View();
@@ -89,6 +99,12 @@ namespace DBMProject.Controllers
         // POST: ValidarProjetos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método responsável por retornar a view com o projeto criado dando origem a um método post
+        /// </summary>
+        /// <returns>
+        /// Retorna a view com o projeto criado dando origem a um método post
+        /// </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Size,Description,Localizacao,Validado,ProjectFileName")] Projeto projeto)
@@ -103,6 +119,12 @@ namespace DBMProject.Controllers
         }
 
         // GET: ValidarProjetos/Edit/5
+        /// <summary>
+        /// Método responsável por retornar a view responsável por editar o projeto com o id passado por parametros.
+        /// </summary>
+        /// <returns>
+        /// Retorna a view com o projeto que se pretende editar
+        /// </returns>
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -121,6 +143,12 @@ namespace DBMProject.Controllers
         // POST: ValidarProjetos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        /// <summary>
+        /// Método responsável pelo post responsável por editar o projeto com o id passado por parametros.
+        /// </summary>
+        /// <returns>
+        /// Retorna a view respetiva depois do projeto ter sido editado.
+        /// </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("ProjetoId,ProjectName,Technology,Size,Description,Localizacao,Validado,ProjectFileName")] Projeto projeto)
@@ -154,6 +182,12 @@ namespace DBMProject.Controllers
         }
 
         // GET: ValidarProjetos/Delete/5
+        /// <summary>
+        /// Método responsável por retornar a view responsável por eliminar o projeto com o id passado por parametros
+        /// </summary>
+        /// <returns>
+        /// Retorna a view com o projeto que se pretende eliminar
+        /// </returns>
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -172,6 +206,12 @@ namespace DBMProject.Controllers
         }
 
         // POST: ValidarProjetos/Delete/5
+        /// <summary>
+        /// Método responsável pelo post responsável por eliminar o projeto com o id passado por parametros.
+        /// </summary>
+        /// <returns>
+        /// Retorna a view respetiva depois do projeto ter sido eliminado.
+        /// </returns>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
@@ -182,6 +222,12 @@ namespace DBMProject.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        /// <summary>
+        /// Método responsável por retornar um boleano true caso o projeto com o id recebido por parametros exista.
+        /// </summary>
+        /// <returns>
+        /// Retorna true ou false caso o projeto com o id recebido como paramrtro exista.
+        /// </returns>
         private bool ProjetoExists(int id)
         {
             return _context.Projetos.Any(e => e.ProjetoId == id);
