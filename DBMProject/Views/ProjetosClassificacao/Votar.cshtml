@@ -1,0 +1,25 @@
+﻿@model DBMProject.ViewModels.ClassificacaoViewModel
+
+
+@{
+    ViewData["Title"] = "Votar";
+}
+
+
+
+<h3> Votar no projeto @Model.Nome </h3>
+<div asp-validation-summary="All"></div>
+<form asp-controller="ProjetosClassificacao" asp-action="Votar">
+
+    <input asp-for="ProjetoId" type="hidden" />
+
+    <select asp-for="Voto">
+
+        <option value="1" selected>1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <input type="submit" value="Votar" />
+</form>

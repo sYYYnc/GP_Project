@@ -24,7 +24,7 @@ namespace DBMProject.Models.ProjectsManagement
         public string Description { get; set; }
 
         [DisplayName("Localização Geográfica")]
-        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor, associe uma localiação geográfica associada ao projeto")]
+        //[Required(AllowEmptyStrings = true, ErrorMessage = "Por favor, associe uma localiação geográfica associada ao projeto")]
         public string Localizacao { get; set; }
 
         public bool Validado { get; set; } = false;
@@ -34,8 +34,13 @@ namespace DBMProject.Models.ProjectsManagement
         [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor, indique o ciclo de estudos associado ao projeto")]
         public int AcademicDegreeId { get; set; }
 
+        [DisplayName("Classificação")]
+        public double Classificacao { get; set; }
+
+        public int NrDeVotos { get; set; }
+
         public virtual AcademicDegree AcademicDegree { get; set; }
-        
+
         public string ProjectFileName { get; set; }
     }
 }

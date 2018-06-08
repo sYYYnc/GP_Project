@@ -31,6 +31,9 @@ namespace DBMProject.Controllers
             return View(await projetosContext.ToListAsync());
         }
 
+
+
+
         // GET: Projetos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
