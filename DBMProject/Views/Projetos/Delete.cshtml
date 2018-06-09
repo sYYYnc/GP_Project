@@ -1,0 +1,81 @@
+﻿@model DBMProject.Models.ProjectsManagement.Projeto
+
+@{
+    ViewData["Title"] = "Apagar Projeto";
+}
+
+
+
+<h3>Tem a certeza que quer apagar este projeto?</h3>
+<div>
+    <h4>Projeto</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Technology)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Technology)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Size)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Localizacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Localizacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Validado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Validado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Classificacao)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Classificacao)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NrDeVotos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NrDeVotos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProjectFileName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProjectFileName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.AcademicDegree)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AcademicDegree.AcademicDegreeName)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="ProjetoId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

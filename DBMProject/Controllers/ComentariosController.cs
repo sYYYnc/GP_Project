@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using DBMProject.Data;
 using DBMProject.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DBMProject.Controllers
 {
@@ -65,6 +66,8 @@ namespace DBMProject.Controllers
             return View(comentario);
         }
 
+
+        [Authorize]
         // GET: Comentarios/Create
         public IActionResult Create(int projid)
         {

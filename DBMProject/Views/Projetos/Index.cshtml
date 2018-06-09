@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
+@using Microsoft.AspNetCore.Identity
+@using DBMProject.Models
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
     ViewData["Title"] = "Lista de projetos";
@@ -42,35 +45,66 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Size)
                 </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Classificacao)
+                </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProjectName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Technology)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Localizacao)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AcademicDegree.AcademicDegreeName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Size)
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.ProjetoId">Details</a>
-                    <a asp-area="" asp-controller="Comentarios" asp-action="ListarComentarios" asp-route-id="@item.ProjetoId">Comentários</a>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Technology)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Localizacao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AcademicDegree.AcademicDegreeName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Size)
+                    </td>
+                    <td>
 
-                    @Html.ActionLink("Download", "DownloadProject", new { searchName = item.ProjectFileName, fileName = item.ProjectName })
-                </td>
-            </tr>
+                        @{ if (item.Classificacao >= 1 && item.Classificacao < 2)
+                            { <img src="~/images/1stars.png" /> }
+                            else if (item.Classificacao >= 2 && item.Classificacao < 3)
+                            { <img src="~/images/2stars.png" /> }
+                            else if (item.Classificacao >= 3 && item.Classificacao < 4)
+                            {<img src="~/images/3stars.png" />}
+                            else if (item.Classificacao >= 4 && item.Classificacao < 5)
+                            {<img src="~/images/4stars.png" />}
+                            else if (item.Classificacao >= 5)
+                            {<img src="~/images/5stars.png" />}
+                            else
+                            {<img src="~/images/nostars.png" />}
+                        }
+
+
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.ProjetoId">Details</a>
+                        @if (SignInManager.IsSignedIn(User))
+    {
+        // is the current user authorized to see the next part of the page?
+        if (User.IsInRole("Admin"))
+        {
+                        <a asp-action="Delete" asp-route-id="@item.ProjetoId">Apagar</a>
+}
+}
+                        
+                        <a asp-area="" asp-controller="Comentarios" asp-action="ListarComentarios" asp-route-id="@item.ProjetoId">Comentários</a>
+                        <a asp-area="" asp-controller="ProjetosClassificacao" asp-action="Votar" asp-route-id="@item.ProjetoId">Votar</a>
+
+                        @Html.ActionLink("Download", "DownloadProject", new { searchName = item.ProjectFileName, fileName = item.ProjectName })
+                    </td>
+                </tr>
             }
 
         </tbody>

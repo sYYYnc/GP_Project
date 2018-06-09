@@ -1,4 +1,6 @@
-﻿@model IEnumerable<DBMProject.Models.Comentario>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+@model IEnumerable<DBMProject.Models.Comentario>
 
 @{
     ViewData["Title"] = "ListarComentarios";
@@ -33,7 +35,15 @@
                 <td>
                     @*<a asp-action="Edit" asp-route-id="@item.ComentarioId">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.ComentarioId">Details</a> |*@
-                    <a asp-action="Delete" asp-route-id="@item.ComentarioId">Delete</a>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        // is the current user authorized to see the next part of the page?
+                        if (User.IsInRole("Admin"))
+                        {
+                            <a asp-action="Delete" asp-route-id="@item.ComentarioId">Apagar</a>
+                        }
+                    }
+
                 </td>
             </tr>
         }
