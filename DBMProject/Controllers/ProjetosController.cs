@@ -110,7 +110,7 @@ namespace DBMProject.Controllers
 
                 await UploadProject(projeto);
 
-                _context.Add(projeto);
+                _context.Projetos.Add(projeto);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
