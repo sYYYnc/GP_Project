@@ -207,7 +207,7 @@ namespace DBMProject.Controllers
                         c.Technology.Contains(textoProcura) ||
                         c.Localizacao.Contains(textoProcura) ||
                         c.AcademicDegree.AcademicDegreeName.Contains(textoProcura))
-                    .Include(c => c.AcademicDegree);
+                    .Include(c => c.AcademicDegree).Where(m => m.Validado == true);
                 return View("Index", projetos);
             }
             else
