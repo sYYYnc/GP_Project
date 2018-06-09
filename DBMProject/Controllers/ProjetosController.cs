@@ -48,7 +48,7 @@ namespace DBMProject.Controllers
 
             return View(projeto);
         }
-        [Authorize]
+        //[Authorize]
         // GET: Projetos/Create
         public IActionResult Create()
         {
@@ -61,12 +61,12 @@ namespace DBMProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,ProjectFileName,Localizacao")] Projeto projeto)
+        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,Localizacao")] Projeto projeto, IFormFile file)
         {
 
             if (ModelState.IsValid)
             {
-                if (!ValidateFileExtension(projeto.ProjectFileName))
+                if (!ValidateFileExtension(file.FileName))
                 {
                     ViewData["ExtensionError"] = "A extensão do ficheiro não é válida. Apenas são aceites ficheiros \".rar\" ou \".zip\"";
                     ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName");

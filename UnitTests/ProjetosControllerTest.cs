@@ -60,7 +60,7 @@ namespace UnitTests
                 Description = "Teste1",
                 ProjectFileName = "teste1.rar" };
 
-            var result = _controller.Create(projeto);
+            var result = _controller.Create(projeto, null);
 
             Assert.IsType<Task<IActionResult>>(result);
         }
