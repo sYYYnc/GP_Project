@@ -6,6 +6,74 @@
 
 <h2>Details</h2>
 
+
+
+
+<div class="details_container">
+
+
+    <img src="@Html.DisplayFor(model => model.Imagem)" alt="" />
+
+    <h2> @Html.DisplayFor(model => model.ProjectName)</h2>
+
+    <p> @Html.DisplayNameFor(model => model.Description)</p>
+
+    <p><strong>@Html.DisplayNameFor(model => model.Technology) :</strong> @Html.DisplayFor(model => model.Technology)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.Size) :</strong> @Html.DisplayFor(model => model.Size)</p>
+
+    <hr />
+
+    <p>comentários</p>
+
+
+
+
+
+
+</div>
+
+<div>
+    <a asp-action="Index">Voltar</a>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div>
     <h4>Projeto</h4>
     <hr />

@@ -34,7 +34,7 @@ namespace DBMProject.Controllers
         {
             var projetosContext = _context.Projetos.Include(p => p.AcademicDegree).Where(m => m.Validado == true);
             //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
-            return View(await projetosContext.ToListAsync());
+            return View("IndexXex", await projetosContext.ToListAsync());
         }
 
         /// <summary>
@@ -244,7 +244,58 @@ namespace DBMProject.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        // GET: Projetoes/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
+            var projeto = await _context.Projetos.SingleOrDefaultAsync(m => m.ProjetoId == id);
+            if (projeto == null)
+            {
+                return NotFound();
+            }
+            ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName", projeto.AcademicDegreeId);
+            return View(projeto);
+        }
+
+        // POST: Projetoes/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ProjetoId,ProjectName,Technology,Size,Description,Localizacao,Validado,AcademicDegreeId,Classificacao,Autor,Imagem,NrDeVotos,ProjectFileName")] Projeto projeto)
+        {
+            if (id != projeto.ProjetoId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(projeto);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ProjetoExists(projeto.ProjetoId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["AcademicDegreeId"] = new SelectList(_context.AcademicDegrees, "AcademicDegreeId", "AcademicDegreeName", projeto.AcademicDegreeId);
+            return View(projeto);
+        }
 
 
     }

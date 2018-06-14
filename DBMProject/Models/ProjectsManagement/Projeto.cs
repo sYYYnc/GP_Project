@@ -37,6 +37,12 @@ namespace DBMProject.Models.ProjectsManagement
         [DisplayName("Classificação")]
         public double Classificacao { get; set; }
 
+        [DisplayName("Autor")]
+        public string Autor { get; set; }
+
+        [DisplayName("Url Imagem")]
+        public string Imagem { get; set; }
+
         public int NrDeVotos { get; set; }
 
         public virtual AcademicDegree AcademicDegree { get; set; }

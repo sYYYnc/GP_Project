@@ -1,0 +1,64 @@
+﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
+
+@{
+    ViewData["Title"] = "IndexXex";
+}
+
+
+
+
+<h3>Projectos</h3>
+<hr />
+
+
+
+
+
+
+
+<ul id="hexGrid">
+
+    @foreach (var item in Model)
+    {
+
+        <li class="hex">
+            <div class="hexIn">
+                <a class="hexLink" asp-action="Details" asp-route-id="@item.ProjetoId">
+                    <img src="@Html.DisplayFor(modelItem => item.Imagem)" alt="" />
+                    <h1 style="color:white">@Html.DisplayFor(modelItem => item.ProjectName)</h1>
+                    <p style="color:white">@Html.DisplayFor(modelItem => item.Description)</p>
+                </a>
+            </div>
+        </li>
+
+    }
+
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

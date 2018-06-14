@@ -1,0 +1,116 @@
+﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
+
+@{
+    ViewData["Title"] = "IndexXex";
+}
+
+
+
+
+<h3>Projectos</h3>
+<hr />
+
+<div class="cards_container">
+
+    @foreach (var item in Model)
+    {
+
+
+
+    <div class="card">
+        <div class="thumbnail"><img class="left" src="@Html.DisplayFor(modelItem => item.Imagem)" /></div>
+        <div class="right">
+            <div class="titulo_cartao">@Html.DisplayFor(modelItem => item.ProjectName)</div>
+            <div class="author">
+                <img src="https://randomuser.me/api/portraits/men/95.jpg" />
+                <div class="autor_nome">@Html.DisplayFor(modelItem => item.Autor)</div>
+            </div>
+            <div class="separator"></div>
+            <p>
+                <strong>@Html.DisplayNameFor(model => model.Description)</strong> :
+                @Html.DisplayFor(modelItem => item.Description)
+            </p>
+            <p><strong>@Html.DisplayNameFor(model => model.Technology) :</strong> @Html.DisplayFor(modelItem => item.Technology) </p>
+        </div>
+        <div>
+            @{ if (item.Classificacao >= 1 && item.Classificacao < 2)
+                            { <img src="~/images/1stars.png" /> }
+                            else if (item.Classificacao >= 2 && item.Classificacao < 3)
+                            { <img src="~/images/2stars.png" /> }
+                            else if (item.Classificacao >= 3 && item.Classificacao < 4)
+                            {<img src="~/images/3stars.png" />}
+                            else if (item.Classificacao >= 4 && item.Classificacao < 5)
+                            {<img src="~/images/4stars.png" />}
+                            else if (item.Classificacao >= 5)
+                            {<img src="~/images/5stars.png" />}
+                            else
+                            {<img src="~/images/nostars.png" />}
+            }
+        </div>
+
+        <ul>
+            <li><i class="fa-envelope-o"></i></li>
+            <li><i class="fa fa-heart-o fa-2x"></i></li>
+            <li><i class="fa fa-envelope-o fa-2x"></i></li>
+            <li><i class="fa fa-share-alt fa-2x"></i></li>
+        </ul>
+        <div class="fab"><i class="fa fa-arrow-down fa-3x"> </i></div>
+    </div>
+
+
+    }
+
+</div>
+
+<ul id="hexGrid">
+
+    @foreach (var item in Model)
+    {
+
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" asp-action="Details" asp-route-id="@item.ProjetoId">
+                <img src="@Html.DisplayFor(modelItem => item.Imagem)" alt="" />
+                <h1 style="color:white">@Html.DisplayFor(modelItem => item.ProjectName)</h1>
+                <p style="color:white">@Html.DisplayFor(modelItem => item.Description)</p>
+            </a>
+        </div>
+    </li>
+
+    }
+
+</ul>
+
+
+<script type="text/javascript">
+
+    document.getElementsById("hexGrid").style.background = "blue";
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -91,14 +91,14 @@
                     <td>
                         <a asp-action="Details" asp-route-id="@item.ProjetoId">Details</a>
                         @if (SignInManager.IsSignedIn(User))
-    {
-        // is the current user authorized to see the next part of the page?
-        if (User.IsInRole("Admin"))
-        {
-                        <a asp-action="Delete" asp-route-id="@item.ProjetoId">Apagar</a>
-}
-}
-                        
+                        {
+                            // is the current user authorized to see the next part of the page?
+                            if (User.IsInRole("Admin"))
+                            {
+                                <a asp-action="Delete" asp-route-id="@item.ProjetoId">Apagar</a>
+                            }
+                        }
+                        <a asp-action="Edit" asp-route-id="@item.ProjetoId">Editar</a>
                         <a asp-area="" asp-controller="Comentarios" asp-action="ListarComentarios" asp-route-id="@item.ProjetoId">Comentários</a>
                         <a asp-area="" asp-controller="ProjetosClassificacao" asp-action="Votar" asp-route-id="@item.ProjetoId">Votar</a>
 
