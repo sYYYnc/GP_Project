@@ -659,8 +659,6 @@ li {
 }
 
 
-
-
 /*** HEXAGON SIZING AND EVEN ROW INDENTATION *****************************************************************/
 @media (min-width:1201px) { /* <- 5-4  hexagons per row */
     #hexGrid {

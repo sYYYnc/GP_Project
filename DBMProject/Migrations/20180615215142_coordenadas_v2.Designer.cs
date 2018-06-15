@@ -11,9 +11,10 @@ using System;
 namespace DBMProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180615215142_coordenadas_v2")]
+    partial class coordenadas_v2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,8 +136,6 @@ namespace DBMProject.Migrations
 
                     b.Property<double>("Classificacao");
 
-                    b.Property<int?>("CoordenadasId");
-
                     b.Property<string>("Description")
                         .IsRequired();
 
@@ -161,8 +160,6 @@ namespace DBMProject.Migrations
                     b.HasKey("ProjetoId");
 
                     b.HasIndex("AcademicDegreeId");
-
-                    b.HasIndex("CoordenadasId");
 
                     b.ToTable("Projetos");
                 });
@@ -289,10 +286,6 @@ namespace DBMProject.Migrations
                         .WithMany()
                         .HasForeignKey("AcademicDegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DBMProject.Models.Coordenadas", "Coordenadas")
-                        .WithMany()
-                        .HasForeignKey("CoordenadasId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

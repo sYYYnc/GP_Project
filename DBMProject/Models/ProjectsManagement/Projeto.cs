@@ -45,6 +45,7 @@ namespace DBMProject.Models.ProjectsManagement
 
         public int NrDeVotos { get; set; }
 
+        public virtual Coordenadas Coordenadas { get; set; }
         public virtual AcademicDegree AcademicDegree { get; set; }
 
         public string ProjectFileName { get; set; }

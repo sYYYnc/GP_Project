@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
 @using Microsoft.AspNetCore.Identity
 @using DBMProject.Models
+
+
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
@@ -105,6 +107,8 @@
                         @Html.ActionLink("Download", "DownloadProject", new { searchName = item.ProjectFileName, fileName = item.ProjectName })
                     </td>
                 </tr>
+
+
             }
 
         </tbody>

@@ -1,0 +1,128 @@
+﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
+
+@{
+    ViewData["Title"] = "Mapa";
+}
+
+
+
+
+<div id="map" style="width:100%;height:400px;"></div>
+
+<script type="text/javascript">
+    function initMap() {
+        console.log("google maps");
+        // Create a map object and specify the DOM element for display.
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 38.5345, lng: -8.86582 },
+            zoom: 8
+        });
+
+        @*var lat1;
+        var long1;
+
+
+        for (var i = 0; i < @ViewData["latitudes"]; i++) {
+
+            lat1 = @ViewData["latitudes"][i];
+
+            for (var j = 0; j < @ViewData["longitudes"].length; j++) {
+
+                long1 = @ViewData["longitudes"][j]
+            }
+
+            var myLatLng = { lat: lat1, lng: long1 };
+
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+
+            });
+
+
+        }*@
+
+
+
+
+
+
+
+    }
+
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABDW2KCUC3slQCnSRjSf5PVKB0HSHNmqc&callback=initMap" async defer></script>
+
+
+
+
+
+<ul>
+    @foreach (var lat in ViewData["latitudes"] as IList<double>)
+    {
+        <li>
+            @lat
+        </li>
+    }
+</ul>
+<ul>
+    @foreach (var longi in ViewData["longitudes"] as IList<double>)
+    {
+        <li>
+            @longi
+        </li>
+    }
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+@*<div id="map-holder">
+
+        http://dev.virtualearth.net/REST/v1/Locations?clocality=Setubal
+
+        <script type="text/javascript">
+
+            console.log("hello");
+
+
+            var width = 900;
+            var height = 600;
+
+
+
+            var projection = d3.geo.mercator();
+
+            var svg = d3.select("map-holder").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+            var path = d3.geo.path()
+                .projection(projection);
+            var g = svg.append("g");
+
+            d3.json("world-110m2.json", function (error, topology) {
+                g.selectAll("path")
+                    .data(topojson.feature(topology, topology.objects.countries)
+                        .geometries)
+                    .enter()
+                    .append("path")
+                    .attr("d", path)
+            });
+
+
+
+        </script>
+
+
+    </div>*@
+
+
+

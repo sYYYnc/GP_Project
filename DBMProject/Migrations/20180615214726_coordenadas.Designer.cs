@@ -11,9 +11,10 @@ using System;
 namespace DBMProject.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180615214726_coordenadas")]
+    partial class coordenadas
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,26 +92,6 @@ namespace DBMProject.Migrations
                     b.ToTable("Comentarios");
                 });
 
-            modelBuilder.Entity("DBMProject.Models.Coordenadas", b =>
-                {
-                    b.Property<int>("CoordenadasId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("Altitude");
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("Country");
-
-                    b.Property<double>("Latitude");
-
-                    b.Property<double>("Longitude");
-
-                    b.HasKey("CoordenadasId");
-
-                    b.ToTable("Coordenadas");
-                });
-
             modelBuilder.Entity("DBMProject.Models.ProjectsManagement.AcademicDegree", b =>
                 {
                     b.Property<int>("AcademicDegreeId")
@@ -134,8 +115,6 @@ namespace DBMProject.Migrations
                     b.Property<string>("Autor");
 
                     b.Property<double>("Classificacao");
-
-                    b.Property<int?>("CoordenadasId");
 
                     b.Property<string>("Description")
                         .IsRequired();
@@ -162,9 +141,7 @@ namespace DBMProject.Migrations
 
                     b.HasIndex("AcademicDegreeId");
 
-                    b.HasIndex("CoordenadasId");
-
-                    b.ToTable("Projetos");
+                    b.ToTable("Projeto");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -289,10 +266,6 @@ namespace DBMProject.Migrations
                         .WithMany()
                         .HasForeignKey("AcademicDegreeId")
                         .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("DBMProject.Models.Coordenadas", "Coordenadas")
-                        .WithMany()
-                        .HasForeignKey("CoordenadasId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

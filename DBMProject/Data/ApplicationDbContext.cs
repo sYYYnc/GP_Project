@@ -22,6 +22,8 @@ namespace DBMProject.Data
 
         public DbSet<Projeto> Projetos { get; set; }
 
+        public DbSet<Coordenadas> Coordenadas { get; set; }
+
         public DbSet<AcademicDegree> AcademicDegrees { get; set; }
         public DbSet<Comentario> Comentarios { get; set; }
     }

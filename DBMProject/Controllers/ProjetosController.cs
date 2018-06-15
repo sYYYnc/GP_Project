@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace DBMProject.Controllers
         {
             var projetosContext = _context.Projetos.Include(p => p.AcademicDegree).Where(m => m.Validado == true);
             //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
-            return View("IndexXex", await projetosContext.ToListAsync());
+            return View("Index", await projetosContext.ToListAsync());
         }
 
         /// <summary>
@@ -45,7 +46,37 @@ namespace DBMProject.Controllers
         /// Retorna uma View que recebe como parametro o projeto correspondente ao id do projeto respetivo.
         /// </returns>
 
+        public async Task<IActionResult> IndexMapa()
+        {
+            var projetosContext = _context.Projetos.Include(p => p.AcademicDegree).Where(m => m.Validado == true);
+            //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
 
+            IList<double> listaLatitudes = new List<double>();
+            IList<double> listaLongitudes = new List<double>();
+
+            foreach (Projeto proj in projetosContext)
+            {
+                var coordenada = await _context.Coordenadas.FirstOrDefaultAsync(m => m.City == proj.Localizacao);
+                if (coordenada != null) {
+                    listaLatitudes.Add(coordenada.Latitude);
+                    listaLongitudes.Add(coordenada.Longitude);
+                }
+                else
+                {
+                    listaLatitudes.Add(0.0);
+                    listaLongitudes.Add(0.0);
+                }
+                
+
+
+            }
+
+
+
+            ViewData["latitudes"] = listaLatitudes;
+            ViewData["longitudes"] = listaLongitudes;
+            return View("Mapa", await projetosContext.ToListAsync());
+        }
 
         // GET: Projetos/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -213,6 +244,37 @@ namespace DBMProject.Controllers
             else
                 return RedirectToAction(nameof(Index));
         }
+
+
+        //public async Task<double> GetLatitude1Async(string localizacao)
+        //{
+        //    if (localizacao == null) { return 0.0; }
+        //    else
+        //    {
+        //        var latitude = await _context.Coordenadas.SingleOrDefaultAsync(m => m.City == localizacao);
+        //        return latitude.Latitude;
+        //    }
+
+
+        //}
+
+        //public async Task<IActionResult> GetLatitude(string localizacao)
+        //{
+        //    if (localizacao == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    var projeto = await _context.Coordenadas.SingleOrDefaultAsync(m => m.City == localizacao);
+        //    if (projeto == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    return View(projeto);
+        //}
+
+
 
 
         public async Task<IActionResult> Delete(int? id)
