@@ -43,6 +43,9 @@ namespace DBMProject.Models.ProjectsManagement
         [DisplayName("Url Imagem")]
         public string Imagem { get; set; }
 
+        [DisplayName("Sector de Actividade")]
+        public string Sector { get; set; }
+
         public int NrDeVotos { get; set; }
 
         public virtual Coordenadas Coordenadas { get; set; }

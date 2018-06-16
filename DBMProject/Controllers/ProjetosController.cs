@@ -57,7 +57,8 @@ namespace DBMProject.Controllers
             foreach (Projeto proj in projetosContext)
             {
                 var coordenada = await _context.Coordenadas.FirstOrDefaultAsync(m => m.City == proj.Localizacao);
-                if (coordenada != null) {
+                if (coordenada != null)
+                {
                     listaLatitudes.Add(coordenada.Latitude);
                     listaLongitudes.Add(coordenada.Longitude);
                 }
@@ -66,7 +67,7 @@ namespace DBMProject.Controllers
                     listaLatitudes.Add(0.0);
                     listaLongitudes.Add(0.0);
                 }
-                
+
 
 
             }
@@ -328,7 +329,7 @@ namespace DBMProject.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProjetoId,ProjectName,Technology,Size,Description,Localizacao,Validado,AcademicDegreeId,Classificacao,Autor,Imagem,NrDeVotos,ProjectFileName")] Projeto projeto)
+        public async Task<IActionResult> Edit(int id, [Bind("ProjetoId,ProjectName,Technology,Size,Description,Localizacao,Validado,AcademicDegreeId,Classificacao,Autor,Imagem,NrDeVotos,ProjectFileName,Sector")] Projeto projeto)
         {
             if (id != projeto.ProjetoId)
             {

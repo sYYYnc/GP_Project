@@ -8,7 +8,7 @@
 
 
 
-<div id="map" style="width:100%;height:400px;"></div>
+<div id="map" style="width:100%;height:700px;"></div>
 
 <script type="text/javascript">
     function initMap() {
@@ -16,7 +16,66 @@
         // Create a map object and specify the DOM element for display.
         var map = new google.maps.Map(document.getElementById('map'), {
             center: { lat: 38.5345, lng: -8.86582 },
-            zoom: 8
+            zoom: 2,
+
+
+            styles: [
+                { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
+                { elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
+                { elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
+                {
+                    featureType: 'administrative.locality',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#d59563' }]
+                },
+                {
+                    featureType: 'poi',
+                    stylers: [{
+                        "visibility": "off",
+
+                    }]
+                },
+
+                {
+                    featureType: 'road',
+                    stylers: [{
+                        "visibility": "off"
+
+                    }]
+                },
+
+
+
+                {
+                    featureType: 'transit',
+                    stylers: [{
+                        "visibility": "off"
+
+                    }]
+                },
+
+                {
+                    featureType: 'water',
+                    elementType: 'geometry',
+                    stylers: [{ color: '#17263c' }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.fill',
+                    stylers: [{ color: '#515c6d' }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.stroke',
+                    stylers: [{ color: '#17263c' }]
+                }
+            ]
+
+
+
+
+
+
         });
 
         //var myLatLng = { lat: -25.363, lng: 131.044 };
@@ -43,26 +102,138 @@
 
 
 
-
+           var min = .999599;
+           var max = 1.000501;
            double lat1 = 0.0;
            double longit = 0.0;
            for (var i = 0; i < (ViewData["latitudes"] as IList<double>).Count; i++)
            {
 
-               lat1 = (ViewData["latitudes"] as IList<double>)[i];
-               longit = (ViewData["longitudes"] as IList<double>)[i];
+
+
+               Random r = new Random();
+               var r1 = r.NextDouble() * (max - min) + min;
+               var r2 = r.NextDouble() * (max - min) + min;
 
 
 
-                   <text> var myLatLng = new google.maps.LatLng( @lat1.ToString(CultureInfo.CreateSpecificCulture("en-GB")) , @longit.ToString(CultureInfo.CreateSpecificCulture("en-GB")) );
 
-               var marker = new google.maps.Marker({
-                     position: myLatLng,
-                      map: map,
-                title: 'Hello World!'
+               lat1 = (ViewData["latitudes"] as IList<double>)[i] * r1;
+               longit = (ViewData["longitudes"] as IList<double>)[i] * r2;
+
+               var nome = @Model.ElementAt(i).ProjectName;
+               var idProj = @Model.ElementAt(i).ProjetoId;
+               var sectorProj = @Model.ElementAt(i).Sector;
+
+
+                   <text>
+
+
+        var imageBarco = {
+            url: '../images/marker_barco.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(50, 65),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(25, 65)
+        };
+        var shapeBarco = {
+            coords: [1, 1, 1, 64, 49, 64, 64, 1],
+            type: 'poly'
+        };
+
+        var imageCarro = {
+            url: '../images/marker_carro.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(50, 65),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(25, 65)
+        };
+        var shapeCarro = {
+            coords: [1, 1, 1, 64, 49, 64, 64, 1],
+            type: 'poly'
+        };
+
+        var imageJogo = {
+            url: '../images/marker_video.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(50, 65),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(25, 65)
+        };
+        var shapeJogo = {
+            coords: [1, 1, 1, 64, 49, 64, 64, 1],
+            type: 'poly'
+        };
+
+        var imageTurismo = {
+            url: '../images/marker_turismo.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(50, 65),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(25, 65)
+        };
+        var shapeTurismo = {
+            coords: [1, 1, 1, 64, 49, 64, 64, 1],
+            type: 'poly'
+        };
+
+
+        var myLatLng = new google.maps.LatLng( @lat1.ToString(CultureInfo.CreateSpecificCulture("en-GB")) , @longit.ToString(CultureInfo.CreateSpecificCulture("en-GB")) );
+
+        var marker = new google.maps.Marker({
+            position: myLatLng,
+            animation: google.maps.Animation.DROP,
+            label: { text: '@nome ', color: "white" },
+
+                   @{
+                       if (sectorProj == "Industria automovel")
+                       {
+                           <text>icon: imageCarro,
+                                shape: shapeCarro,
+                            </text>
+                       }
+                       else if (sectorProj == "Industria Turismo")
+                       {
+                           <text>icon: imageTurismo,
+                            shape: shapeTurismo,
+                            </text>
+                       }
+                       else if (sectorProj == "Industria portuaria")
+                       {
+                           <text>icon: imageBarco,
+                            shape: shapeBarco,
+                            </text>
+                       }
+                       else
+                       {
+                           <text>icon: imageJogo,
+                                shape: shapeJogo,
+                            </text>
+                       }
+
+
+                   }
+
+
+
+                   @*url: @Html.ActionLink("Link text", "Details", "Projetos", new { id= Model.ElementAt(i).ProjetoId }, null) ,*@
+                   url: 'https://localhost:44394//Projetos/Details/@idProj ' ,
+                      map: map
+
 
             });
                marker.setMap(map);
+               google.maps.event.addListener(marker, 'click', function () {
+                   window.location.href = this.url;
+               });
          </text>
            }
 
