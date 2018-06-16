@@ -1,4 +1,5 @@
-﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
+﻿@using System.Globalization;
+@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
 
 @{
     ViewData["Title"] = "Mapa";
@@ -18,33 +19,61 @@
             zoom: 8
         });
 
-        @*var lat1;
-        var long1;
+        //var myLatLng = { lat: -25.363, lng: 131.044 };
+        //var marker = new google.maps.Marker({
+        //    position: myLatLng,
+        //    map: map,
+        //    title: 'Hello World!'
+        //});
 
 
-        for (var i = 0; i < @ViewData["latitudes"]; i++) {
 
-            lat1 = @ViewData["latitudes"][i];
+       @{
 
-            for (var j = 0; j < @ViewData["longitudes"].length; j++) {
+           //double lat1 = 0.0;
+           //double longit = 0.0;
+           //for (var i = 0; i < (ViewData["latitudes"] as IList<double>).Count ; i++) {
 
-                long1 = @ViewData["longitudes"][j]
-            }
+           //    lat1 = (ViewData["latitudes"] as IList<double>)[i];
 
-            var myLatLng = { lat: lat1, lng: long1 };
+           //    for (var j = 0; j < (ViewData["longitudes"] as IList<double>).Count  ; j++) {
 
-            var marker = new google.maps.Marker({
-                position: myLatLng,
-                map: map,
+           //        longit = (ViewData["longitudes"] as IList<double>)[j];
+           //    }
+
+
+
+
+           double lat1 = 0.0;
+           double longit = 0.0;
+           for (var i = 0; i < (ViewData["latitudes"] as IList<double>).Count; i++)
+           {
+
+               lat1 = (ViewData["latitudes"] as IList<double>)[i];
+               longit = (ViewData["longitudes"] as IList<double>)[i];
+
+
+
+                   <text> var myLatLng = new google.maps.LatLng( @lat1.ToString(CultureInfo.CreateSpecificCulture("en-GB")) , @longit.ToString(CultureInfo.CreateSpecificCulture("en-GB")) );
+
+               var marker = new google.maps.Marker({
+                     position: myLatLng,
+                      map: map,
+                title: 'Hello World!'
 
             });
+               marker.setMap(map);
+         </text>
+           }
 
+       }
 
+        @*@{
+            for (int i = 0; i < (ViewData["latitudes"] as IList<double>).Count; i++)
+            {
+
+            }
         }*@
-
-
-
-
 
 
 
@@ -58,22 +87,22 @@
 
 
 
-<ul>
-    @foreach (var lat in ViewData["latitudes"] as IList<double>)
-    {
-        <li>
-            @lat
-        </li>
-    }
-</ul>
-<ul>
-    @foreach (var longi in ViewData["longitudes"] as IList<double>)
-    {
-        <li>
-            @longi
-        </li>
-    }
-</ul>
+@*<ul>
+        @foreach (var lat in ViewData["latitudes"] as IList<double>)
+        {
+            <li>
+                @lat
+            </li>
+        }
+    </ul>
+    <ul>
+        @foreach (var longi in ViewData["longitudes"] as IList<double>)
+        {
+            <li>
+                @longi
+            </li>
+        }
+    </ul>*@
 
 
 
