@@ -1,14 +1,33 @@
 ﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
 
 @{
-    ViewData["Title"] = "IndexXex";
+    ViewData["Title"] = "Lista de Projetos";
 }
 
 
 
 
-<h3>Projectos</h3>
+<h3>Projetos Disponíveis</h3>
 <hr />
+
+@using (Html.BeginForm("Search", "Projetos", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <th>
+                @Html.TextBox("textoProcura")
+            </th>
+            <td>
+                <input type="submit" id="ButtonProcura" value="Procurar" />
+            </td>
+        </tr>
+    </table>
+}
+
+<p>
+    <a asp-action="Create">Upload ficheiro</a>
+</p>
+
 
 <div class="cards_container">
 
@@ -17,45 +36,45 @@
 
 
 
-    <div class="card">
-        <div class="thumbnail"><img class="left" src="@Html.DisplayFor(modelItem => item.Imagem)" /></div>
-        <div class="right">
-            <div class="titulo_cartao">@Html.DisplayFor(modelItem => item.ProjectName)</div>
-            <div class="author">
-                <img src="https://randomuser.me/api/portraits/men/95.jpg" />
-                <div class="autor_nome">@Html.DisplayFor(modelItem => item.Autor)</div>
+        <div class="card">
+            <div class="thumbnail"><img class="left" src="@Html.DisplayFor(modelItem => item.Imagem)" /></div>
+            <div class="right">
+                <div class="titulo_cartao">@Html.DisplayFor(modelItem => item.ProjectName)</div>
+                <div class="author">
+                    <img src="https://randomuser.me/api/portraits/men/95.jpg" />
+                    <div class="autor_nome">@Html.DisplayFor(modelItem => item.Autor)</div>
+                </div>
+                <div class="separator"></div>
+                <p>
+                    <strong>@Html.DisplayNameFor(model => model.Description)</strong> :
+                    @Html.DisplayFor(modelItem => item.Description)
+                </p>
+                <p><strong>@Html.DisplayNameFor(model => model.Technology) :</strong> @Html.DisplayFor(modelItem => item.Technology) </p>
             </div>
-            <div class="separator"></div>
-            <p>
-                <strong>@Html.DisplayNameFor(model => model.Description)</strong> :
-                @Html.DisplayFor(modelItem => item.Description)
-            </p>
-            <p><strong>@Html.DisplayNameFor(model => model.Technology) :</strong> @Html.DisplayFor(modelItem => item.Technology) </p>
-        </div>
-        <div>
-            @{ if (item.Classificacao >= 1 && item.Classificacao < 2)
-                            { <img src="~/images/1stars.png" /> }
-                            else if (item.Classificacao >= 2 && item.Classificacao < 3)
-                            { <img src="~/images/2stars.png" /> }
-                            else if (item.Classificacao >= 3 && item.Classificacao < 4)
-                            {<img src="~/images/3stars.png" />}
-                            else if (item.Classificacao >= 4 && item.Classificacao < 5)
-                            {<img src="~/images/4stars.png" />}
-                            else if (item.Classificacao >= 5)
-                            {<img src="~/images/5stars.png" />}
-                            else
-                            {<img src="~/images/nostars.png" />}
-            }
-        </div>
+            <div>
+                @{ if (item.Classificacao >= 1 && item.Classificacao < 2)
+                    { <img src="~/images/1stars.png" /> }
+                    else if (item.Classificacao >= 2 && item.Classificacao < 3)
+                    { <img src="~/images/2stars.png" /> }
+                    else if (item.Classificacao >= 3 && item.Classificacao < 4)
+                    {<img src="~/images/3stars.png" />}
+                    else if (item.Classificacao >= 4 && item.Classificacao < 5)
+                    {<img src="~/images/4stars.png" />}
+                    else if (item.Classificacao >= 5)
+                    {<img src="~/images/5stars.png" />}
+                    else
+                    {<img src="~/images/nostars.png" />}
+                }
+            </div>
 
-        <ul>
-            <li><i class="fa-envelope-o"></i></li>
-            <li><i class="fa fa-heart-o fa-2x"></i></li>
-            <li><i class="fa fa-envelope-o fa-2x"></i></li>
-            <li><i class="fa fa-share-alt fa-2x"></i></li>
-        </ul>
-        <div class="fab"><i class="fa fa-arrow-down fa-3x"> </i></div>
-    </div>
+            <ul>
+                <li><i class="fa-envelope-o"></i></li>
+                <li><i class="fa fa-heart-o fa-2x"></i></li>
+                <li><i class="fa fa-envelope-o fa-2x"></i></li>
+                <li><i class="fa fa-share-alt fa-2x"></i></li>
+            </ul>
+            <div class="fab"><i class="fa fa-arrow-down fa-3x"> </i></div>
+        </div>
 
 
     }
@@ -67,15 +86,15 @@
     @foreach (var item in Model)
     {
 
-    <li class="hex">
-        <div class="hexIn">
-            <a class="hexLink" asp-action="Details" asp-route-id="@item.ProjetoId">
-                <img src="@Html.DisplayFor(modelItem => item.Imagem)" alt="" />
-                <h1 style="color:white">@Html.DisplayFor(modelItem => item.ProjectName)</h1>
-                <p style="color:white">@Html.DisplayFor(modelItem => item.Description)</p>
-            </a>
-        </div>
-    </li>
+        <li class="hex">
+            <div class="hexIn">
+                <a class="hexLink" asp-action="Details" asp-route-id="@item.ProjetoId">
+                    <img src="@Html.DisplayFor(modelItem => item.Imagem)" alt="" />
+                    <h1 style="color:white">@Html.DisplayFor(modelItem => item.ProjectName)</h1>
+                    <p style="color:white">@Html.DisplayFor(modelItem => item.Description)</p>
+                </a>
+            </div>
+        </li>
 
     }
 

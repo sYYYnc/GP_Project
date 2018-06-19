@@ -35,7 +35,7 @@ namespace DBMProject.Controllers
         {
             var projetosContext = _context.Projetos.Include(p => p.AcademicDegree).Where(m => m.Validado == true);
             //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
-            return View("Index", await projetosContext.ToListAsync());
+            return View("IndexCards", await projetosContext.ToListAsync());
         }
 
         /// <summary>
@@ -245,35 +245,6 @@ namespace DBMProject.Controllers
             else
                 return RedirectToAction(nameof(Index));
         }
-
-
-        //public async Task<double> GetLatitude1Async(string localizacao)
-        //{
-        //    if (localizacao == null) { return 0.0; }
-        //    else
-        //    {
-        //        var latitude = await _context.Coordenadas.SingleOrDefaultAsync(m => m.City == localizacao);
-        //        return latitude.Latitude;
-        //    }
-
-
-        //}
-
-        //public async Task<IActionResult> GetLatitude(string localizacao)
-        //{
-        //    if (localizacao == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var projeto = await _context.Coordenadas.SingleOrDefaultAsync(m => m.City == localizacao);
-        //    if (projeto == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(projeto);
-        //}
 
 
 

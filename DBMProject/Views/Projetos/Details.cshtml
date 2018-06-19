@@ -1,11 +1,10 @@
 ﻿@model DBMProject.Models.ProjectsManagement.Projeto
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detalhes do Projeto";
 }
-
-<h2>Details</h2>
-
 
 
 
@@ -15,20 +14,48 @@
     <img src="@Html.DisplayFor(model => model.Imagem)" alt="" />
 
     <h2> @Html.DisplayFor(model => model.ProjectName)</h2>
-
-    <p> @Html.DisplayNameFor(model => model.Description)</p>
-
+    <p><strong>@Html.DisplayNameFor(model => model.Autor) :</strong> @Html.DisplayFor(model => model.Autor)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.Description) :</strong> @Html.DisplayFor(model => model.Description)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Technology) :</strong> @Html.DisplayFor(model => model.Technology)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Size) :</strong> @Html.DisplayFor(model => model.Size)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.AcademicDegree) :</strong> @Html.DisplayFor(model => model.AcademicDegree)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.Sector) :</strong> @Html.DisplayFor(model => model.Sector)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.Localizacao) :</strong> @Html.DisplayFor(model => model.Localizacao)</p>
 
     <hr />
+    <p>
+        @{ if (Model.Classificacao >= 1 && Model.Classificacao < 2)
+            { <img src="~/images/1stars.png" /> }
+            else if (Model.Classificacao >= 2 && Model.Classificacao < 3)
+            { <img src="~/images/2stars.png" /> }
+            else if (Model.Classificacao >= 3 && Model.Classificacao < 4)
+            {<img src="~/images/3stars.png" />}
+            else if (Model.Classificacao >= 4 && Model.Classificacao < 5)
+            {<img src="~/images/4stars.png" />}
+            else if (Model.Classificacao >= 5)
+            {<img src="~/images/5stars.png" />}
+            else
+            {<img src="~/images/nostars.png" />}
+        }
+    </p>
 
-    <p>comentários</p>
+    <p>
+        <a asp-action="Details" asp-route-id="@Model.ProjetoId">Details</a>
+        @if (SignInManager.IsSignedIn(User))
+        {
+            // is the current user authorized to see the next part of the page?
+            if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Delete" asp-route-id="@Model.ProjetoId">Apagar</a>
+            }
+        }
+        <a asp-action="Edit" asp-route-id="@Model.ProjetoId">Editar</a>
+        <a asp-area="" asp-controller="Comentarios" asp-action="ListarComentarios" asp-route-id="@Model.ProjetoId">Comentários</a>
+        <a asp-area="" asp-controller="ProjetosClassificacao" asp-action="Votar" asp-route-id="@Model.ProjetoId">Votar</a>
 
+        @Html.ActionLink("Download", "DownloadProject", new { searchName = Model.ProjectFileName, fileName = Model.ProjectName })
 
-
-
-
+    </p>
 
 </div>
 

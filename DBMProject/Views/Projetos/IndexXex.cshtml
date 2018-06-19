@@ -1,19 +1,32 @@
 ﻿@model IEnumerable<DBMProject.Models.ProjectsManagement.Projeto>
 
 @{
-    ViewData["Title"] = "IndexXex";
+    ViewData["Title"] = "Lista de Projetos";
 }
 
 
 
 
-<h3>Projectos</h3>
+<h3>Projectos Disponíveis</h3>
 <hr />
 
+@using (Html.BeginForm("Search", "Projetos", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <th>
+                @Html.TextBox("textoProcura")
+            </th>
+            <td>
+                <input type="submit" id="ButtonProcura" value="Procurar" />
+            </td>
+        </tr>
+    </table>
+}
 
-
-
-
+<p>
+    <a asp-action="Create">Upload ficheiro</a>
+</p>
 
 
 <ul id="hexGrid">
