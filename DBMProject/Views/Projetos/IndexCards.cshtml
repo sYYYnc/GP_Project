@@ -10,23 +10,33 @@
 <h3>Projetos Disponíveis</h3>
 <hr />
 
-@using (Html.BeginForm("Search", "Projetos", FormMethod.Post))
-{
-    <table>
-        <tr>
-            <th>
-                @Html.TextBox("textoProcura")
-            </th>
-            <td>
-                <input type="submit" id="ButtonProcura" value="Procurar" />
-            </td>
-        </tr>
-    </table>
-}
+<div class="top_bar_listagem">
 
-<p>
-    <a asp-action="Create">Upload ficheiro</a>
-</p>
+    @using (Html.BeginForm("Search", "Projetos", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <th>
+                    @Html.TextBox("textoProcura")
+                </th>
+                <td>
+                    <input type="submit" id="ButtonProcura" value="Procurar" />
+                </td>
+            </tr>
+        </table>
+    }
+
+    <p>
+        <a asp-action="Create">Submeter Projeto <img src="~/images/upload_icon.png" /></a>
+    </p>
+
+    <div class="tipos_listagem">
+        <a asp-area="" asp-action="IndexLista"><img src="~/images/list_list.png" style="width:50px; height:50px;" /></a>
+        <a asp-area="" asp-action="IndexHex"><img src="~/images/list_hex.png" style="width:50px; height:50px;" /></a>
+        <a asp-area="" asp-action="Index"><img src="~/images/list_card.png" style="width:50px; height:50px;" /></a>
+    </div>
+</div>
+
 
 
 <div class="cards_container">
@@ -68,46 +78,19 @@
             </div>
 
             <ul>
-                <li><i class="fa-envelope-o"></i></li>
-                <li><i class="fa fa-heart-o fa-2x"></i></li>
-                <li><i class="fa fa-envelope-o fa-2x"></i></li>
-                <li><i class="fa fa-share-alt fa-2x"></i></li>
+                <li><a asp-area="" asp-controller="Comentarios" asp-action="ListarComentarios" asp-route-id="@item.ProjetoId"><img src="~/images/comments.png" /></a></li>
+                <li> <a asp-action="Details" asp-route-id="@item.ProjetoId"><img src="~/images/info.png" /></a></li>
             </ul>
-            <div class="fab"><i class="fa fa-arrow-down fa-3x"> </i></div>
+
+
+            @*<div class="fab"> @Html.ActionLink("Download", "DownloadProject", new { @class="fab", searchName = item.ProjectFileName, fileName = item.ProjectName })</div>*@
+            @Html.ActionLink("", "DownloadProject", new { searchName = item.ProjectFileName, fileName = item.ProjectName }, new { @class = "fab" })
         </div>
 
 
     }
 
 </div>
-
-<ul id="hexGrid">
-
-    @foreach (var item in Model)
-    {
-
-        <li class="hex">
-            <div class="hexIn">
-                <a class="hexLink" asp-action="Details" asp-route-id="@item.ProjetoId">
-                    <img src="@Html.DisplayFor(modelItem => item.Imagem)" alt="" />
-                    <h1 style="color:white">@Html.DisplayFor(modelItem => item.ProjectName)</h1>
-                    <p style="color:white">@Html.DisplayFor(modelItem => item.Description)</p>
-                </a>
-            </div>
-        </li>
-
-    }
-
-</ul>
-
-
-<script type="text/javascript">
-
-    document.getElementsById("hexGrid").style.background = "blue";
-
-</script>
-
-
 
 
 

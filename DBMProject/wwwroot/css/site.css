@@ -15,22 +15,35 @@
 }
 
 .home1 {
-    padding-top:20px;
-    display:flex;
-    width:100%;
-    height:100%;
+    padding-top: 20px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+}
+.intro {
+    background-color: rgba(0, 0, 0, 0.4);
+    color:white;
+    visibility:hidden;
+}
 
-    
+#home_info {
+
+    background-color: #3C4B73;
+    flex: 1 0 100%;
+    padding: 1rem;
 }
 
 #home_left {
-    background-image: url(../images/18835532_1448726855183391_7818854908245735737_n.jpg);
+    background-image: url(../images/home.jpg);
     background-size: contain;
     background-repeat: no-repeat;
     background-color: #3C4B73;
-    flex: 1;
-    padding: 1rem;
+    flex: 2 0;
+    padding: 100px;
 }
+
+
 #home_right {
     background-color: #3C4B73;
     flex: 1;
@@ -60,43 +73,7 @@ nav {
 }
 
 
-/*------------------------------------------------------------------*/
-/* LOADER */
 
-.no-js #loader {
-    display: none;
-}
-
-.js #loader {
-    display: block;
-    position: absolute;
-    left: 100px;
-    top: 0;
-}
-
-.se-pre-con {
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    width: 100%;
-    height: 100%;
-    z-index: 9999;
-    background: url(images/Preloader_4.gif) center no-repeat #fff;
-}
-
-
-/*#home {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    width: 100%;
-    margin: auto;
-}*/
-/*.homeimage {
-    max-width: 100%;
-    max-height: 100%;
-}*/
 
 .grdp {
     background-color: #fb6262;
@@ -387,6 +364,17 @@ a {
 
 /*LISTAR PROJECTOS*/
 
+
+.top_bar_listagem {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-basis: 100%;
+    justify-content: space-between;
+}
+
+
+
 .card_container {
     display: flex;
     flex-wrap: wrap;
@@ -504,7 +492,7 @@ img.left {
     border: 1px solid #C3C3C3;
 }
 
-p {
+.card p {
     text-align: justify;
     padding-top: 10px;
     font-size: 0.95rem;
@@ -515,11 +503,11 @@ p {
 
 
 /* Those futur buttons */
-ul {
+.card ul {
     margin-left: 250px;
 }
 
-li {
+.card li {
     display: inline;
     list-style: none;
     padding-right: 40px;
@@ -743,5 +731,31 @@ li {
 @media (max-width: 400px) {
     #hexGrid {
         font-size: 13px;
+    }
+}
+
+/*@media screen and (max-width: 600px) {
+    #home_left {
+        background-image: none;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #3C4B73;
+        flex: 2 0;
+        padding: 1rem;
+    }
+}*/
+@media screen and (max-width: 500px) {
+    #home_left {
+        background-image: url(../images/home.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-color: #3C4B73;
+        flex: 2 0;
+        padding: 0px;
+        visibility:hidden;
+    }
+
+    .intro {
+        visibility:visible;
     }
 }

@@ -76,7 +76,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Sector" class="control-label"></label>
-                <input asp-for="Sector" class="form-control" />
+
+                <select asp-for="Sector">
+
+                    <option value="Industria Video Jogos">Industria Video Jogos</option>
+                    <option value="Industria portuaria">Industria portuaria</option>
+                    <option value="Industria Turismo">Industria Turismo</option>
+                    <option value="Industria automovel">Industria automovel</option>
+                    <option value="Outro" selected>Outro</option>
+                </select>
                 <span asp-validation-for="Sector" class="text-danger"></span>
             </div>
             <div class="form-group">

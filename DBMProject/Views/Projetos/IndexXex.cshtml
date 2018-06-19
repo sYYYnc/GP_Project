@@ -10,25 +10,32 @@
 <h3>Projectos Disponíveis</h3>
 <hr />
 
-@using (Html.BeginForm("Search", "Projetos", FormMethod.Post))
-{
-    <table>
-        <tr>
-            <th>
-                @Html.TextBox("textoProcura")
-            </th>
-            <td>
-                <input type="submit" id="ButtonProcura" value="Procurar" />
-            </td>
-        </tr>
-    </table>
-}
+<div class="top_bar_listagem">
 
-<p>
-    <a asp-action="Create">Upload ficheiro</a>
-</p>
+    @using (Html.BeginForm("Search", "Projetos", FormMethod.Post))
+    {
+        <table>
+            <tr>
+                <th>
+                    @Html.TextBox("textoProcura")
+                </th>
+                <td>
+                    <input type="submit" id="ButtonProcura" value="Procurar" />
+                </td>
+            </tr>
+        </table>
+    }
 
+    <p>
+        <a asp-action="Create">Submeter Projeto <img src="~/images/upload_icon.png" /></a>
+    </p>
 
+    <div class="tipos_listagem">
+        <a asp-area="" asp-action="IndexLista"><img src="~/images/list_list.png" style="width:50px; height:50px;" /></a>
+        <a asp-area="" asp-action="IndexHex"><img src="~/images/list_hex.png" style="width:50px; height:50px;" /></a>
+        <a asp-area="" asp-action="Index"><img src="~/images/list_card.png" style="width:50px; height:50px;" /></a>
+    </div>
+</div>
 <ul id="hexGrid">
 
     @foreach (var item in Model)

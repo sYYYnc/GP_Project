@@ -37,6 +37,18 @@ namespace DBMProject.Controllers
             //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
             return View("IndexCards", await projetosContext.ToListAsync());
         }
+        public async Task<IActionResult> IndexLista()
+        {
+            var projetosContext = _context.Projetos.Include(p => p.AcademicDegree).Where(m => m.Validado == true);
+            //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
+            return View("Index", await projetosContext.ToListAsync());
+        }
+        public async Task<IActionResult> IndexHex()
+        {
+            var projetosContext = _context.Projetos.Include(p => p.AcademicDegree).Where(m => m.Validado == true);
+            //var projetosContext = _context.Projetos.Include(p => p.AcademicDegree);
+            return View("IndexXex", await projetosContext.ToListAsync());
+        }
 
         /// <summary>
         /// Método responsável por retornar a view que contém os detalhes de determinado projeto, recebendo 
@@ -240,7 +252,7 @@ namespace DBMProject.Controllers
                         c.Localizacao.Contains(textoProcura) ||
                         c.AcademicDegree.AcademicDegreeName.Contains(textoProcura))
                     .Include(c => c.AcademicDegree).Where(m => m.Validado == true);
-                return View("Index", projetos);
+                return View("IndexCards", projetos);
             }
             else
                 return RedirectToAction(nameof(Index));

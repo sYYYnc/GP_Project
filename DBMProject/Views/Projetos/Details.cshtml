@@ -18,7 +18,7 @@
     <p><strong>@Html.DisplayNameFor(model => model.Description) :</strong> @Html.DisplayFor(model => model.Description)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Technology) :</strong> @Html.DisplayFor(model => model.Technology)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Size) :</strong> @Html.DisplayFor(model => model.Size)</p>
-    <p><strong>@Html.DisplayNameFor(model => model.AcademicDegree) :</strong> @Html.DisplayFor(model => model.AcademicDegree)</p>
+    <p><strong>@Html.DisplayNameFor(model => model.AcademicDegree) :</strong> @Html.DisplayFor(model => model.AcademicDegree.AcademicDegreeName)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Sector) :</strong> @Html.DisplayFor(model => model.Sector)</p>
     <p><strong>@Html.DisplayNameFor(model => model.Localizacao) :</strong> @Html.DisplayFor(model => model.Localizacao)</p>
 
@@ -40,16 +40,17 @@
     </p>
 
     <p>
-        <a asp-action="Details" asp-route-id="@Model.ProjetoId">Details</a>
+
         @if (SignInManager.IsSignedIn(User))
         {
             // is the current user authorized to see the next part of the page?
             if (User.IsInRole("Admin"))
             {
                 <a asp-action="Delete" asp-route-id="@Model.ProjetoId">Apagar</a>
+                <a asp-action="Edit" asp-route-id="@Model.ProjetoId">Editar</a>
             }
         }
-        <a asp-action="Edit" asp-route-id="@Model.ProjetoId">Editar</a>
+
         <a asp-area="" asp-controller="Comentarios" asp-action="ListarComentarios" asp-route-id="@Model.ProjetoId">Comentários</a>
         <a asp-area="" asp-controller="ProjetosClassificacao" asp-action="Votar" asp-route-id="@Model.ProjetoId">Votar</a>
 
@@ -64,73 +65,3 @@
 </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div>
-    <h4>Projeto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.ProjectName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Technology)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Technology)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Size)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Size)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-    </dl>
-</div>
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>

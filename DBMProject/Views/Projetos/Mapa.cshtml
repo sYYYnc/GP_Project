@@ -10,6 +10,15 @@
 
 <div id="map" style="width:100%;height:700px;"></div>
 
+<div id="legenda">
+    Sectores de Actividade :
+    Automóvel - <img src="~/images/marker_carro.png" style="width:20px;" />
+    Turismo - <img src="~/images/marker_turismo.png" style="width:20px;" />
+    Portuário - <img src="~/images/marker_barco.png" style="width:20px;" />
+    Video Jogos - <img src="~/images/marker_video.png" style="width:20px;" />
+    Outros - <img src="~/images/marker_outros.png" style="width:20px;" />
+</div>
+
 <script type="text/javascript">
     function initMap() {
         console.log("google maps");
@@ -185,6 +194,20 @@
             type: 'poly'
         };
 
+        var imageOutros = {
+            url: '../images/marker_outros.png',
+            // This marker is 20 pixels wide by 32 pixels high.
+            size: new google.maps.Size(50, 65),
+            // The origin for this image is (0, 0).
+            origin: new google.maps.Point(0, 0),
+            // The anchor for this image is the base of the flagpole at (0, 32).
+            anchor: new google.maps.Point(25, 65)
+        };
+        var shapeOutros = {
+            coords: [1, 1, 1, 64, 49, 64, 64, 1],
+            type: 'poly'
+        };
+
 
         var myLatLng = new google.maps.LatLng( @lat1.ToString(CultureInfo.CreateSpecificCulture("en-GB")) , @longit.ToString(CultureInfo.CreateSpecificCulture("en-GB")) );
 
@@ -212,10 +235,17 @@
                             shape: shapeBarco,
                             </text>
                        }
-                       else
+                       else if (sectorProj == "Industria Video Jogos")
                        {
                            <text>icon: imageJogo,
                                 shape: shapeJogo,
+                            </text>
+                       }
+
+                       else
+                       {
+                           <text>icon: imageOutros,
+                            shape: shapeOutros,
                             </text>
                        }
 
