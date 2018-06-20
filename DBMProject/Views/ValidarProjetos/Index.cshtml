@@ -60,9 +60,9 @@
                         @Html.DisplayFor(modelItem => item.ProjectFileName)
                     </td>
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.ProjetoId">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.ProjetoId">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.ProjetoId">Delete</a> |
+                        <a asp-controller="Projetos" asp-action="Edit" asp-route-id="@item.ProjetoId">Editar</a> |
+                        <a asp-controller="Projetos" asp-action="Details" asp-route-id="@item.ProjetoId">Detalhes</a> |
+                        <a asp-controller="Projetos" asp-action="Delete" asp-route-id="@item.ProjetoId">Apagar</a> |
                         <a asp-action="ValidarProjeto" asp-route-id="@item.ProjetoId" class="btn-success">Validar Projecto</a>
                     </td>
                 </tr>
