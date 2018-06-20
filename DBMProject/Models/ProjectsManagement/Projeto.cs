@@ -38,10 +38,11 @@ namespace DBMProject.Models.ProjectsManagement
         public double Classificacao { get; set; }
 
         [DisplayName("Autor")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor, indique o Autor")]
         public string Autor { get; set; }
 
         [DisplayName("Url Imagem")]
-        public string Imagem { get; set; }
+        public string Imagem { get; set; } = "https://i.imgur.com/7bIepUv.jpg";
 
         [DisplayName("Sector de Actividade")]
         public string Sector { get; set; }
