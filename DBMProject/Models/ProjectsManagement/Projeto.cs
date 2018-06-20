@@ -38,7 +38,7 @@ namespace DBMProject.Models.ProjectsManagement
         public double Classificacao { get; set; }
 
         [DisplayName("Autor")]
-
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Por favor, indique o Autor")]
         public string Autor { get; set; }
 
         [DisplayName("Url Imagem")]
