@@ -2,7 +2,7 @@
     /*background-image: url(../images/back.png);*/
     background-color: #F0F0F0;
     padding-bottom: 20px;
-    background-image: url(../images/back.png);
+    background-image: url(../images/wallhaven-69410.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     
@@ -62,7 +62,7 @@
     padding-right: 15px;
     margin: auto;
     width: auto;
-    background-color: #F0F0F0;
+    background-color: rgb(255,255,255,0.7);
 }
 
 
@@ -464,6 +464,7 @@ img.left {
 .right {
     margin-left: 300px;
     margin-right: 20px;
+    font-family: Arial;
 }
 
 .titulo_cartao {
@@ -752,6 +753,36 @@ img.left {
         padding: 1rem;
     }
 }*/
+
+@media screen and (max-width: 650px) {
+    .card {
+        height: 500px;
+        width: 350px;
+    }
+
+        .card p {
+            margin: 20px;
+        }
+        .card ul {
+            margin-left: 5px;
+        }
+
+    .right {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 120px;
+    }
+
+    .login-wrap2 {
+        min-height: 1500px;
+
+    }
+    .login-wrap {
+        min-height: 900px;
+    }
+}
+
+
 @media screen and (max-width: 500px) {
     #home_left {
         background-image: url(../images/home.jpg);
@@ -767,3 +798,5 @@ img.left {
         visibility:visible;
     }
 }
+
+
