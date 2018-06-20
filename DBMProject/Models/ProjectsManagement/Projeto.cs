@@ -42,7 +42,7 @@ namespace DBMProject.Models.ProjectsManagement
         public string Autor { get; set; }
 
         [DisplayName("Url Imagem")]
-        public string Imagem { get; set; } = "https://i.imgur.com/7bIepUv.jpg";
+        public string Imagem { get; set; }
 
         [DisplayName("Sector de Actividade")]
         public string Sector { get; set; }
