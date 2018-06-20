@@ -133,9 +133,9 @@ namespace DBMProject.Controllers
         /// </returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,Autor,Imagem,Sector,Localizacao")] Projeto projeto, IFormFile file)
+        public async Task<IActionResult> Create([Bind("ProjetoId,ProjectName,Technology,Description,AcademicDegreeId,Localizacao")] Projeto projeto, IFormFile file)
         {
-
+            // Autor,Imagem,Sector,
             // "ProjetoId,ProjectName,Technology,Size,Description,Localizacao,Validado,AcademicDegreeId,Classificacao,Autor,Imagem,NrDeVotos,ProjectFileName,Sector"
 
             if (ModelState.IsValid)
